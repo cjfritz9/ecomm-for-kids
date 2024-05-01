@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-05-01T16:47:47.360Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="QMC3H2MsLImTMKx1W63h" version="24.3.1" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-01T18:00:50.659Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="lq3El3u34HJ-0LU4m4em" version="24.3.1" type="github">
   <diagram name="Page-1" id="Vd3vyi7NiTdGyAedGPBS">
     <mxGraphModel dx="2537" dy="946" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -18,8 +18,23 @@
         <mxCell id="jsz7eJaQHbYZsbQFyQcG-18" value="Application" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;fontSize=24;fontStyle=0" vertex="1" parent="1">
           <mxGeometry x="-490" y="160" width="214" height="134" as="geometry" />
         </mxCell>
-        <mxCell id="0hT-b1IgBU58Ld49_TAB-7" value="SaaS Design&lt;div&gt;Kid-friendly Theme&lt;/div&gt;&lt;div&gt;&quot;Get Started&quot; link to tool&lt;/div&gt;&lt;div&gt;Subscriptions?&lt;/div&gt;&lt;div&gt;3-steps&lt;/div&gt;&lt;div&gt;FAQ&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="0hT-b1IgBU58Ld49_TAB-7" value="SaaS Design&lt;div&gt;Kid-friendly Theme&lt;/div&gt;&lt;div&gt;&quot;Get Started&quot; link to tool&lt;/div&gt;&lt;div&gt;Subscriptions?&lt;/div&gt;&lt;div&gt;3-steps&lt;/div&gt;&lt;div&gt;Why Us&lt;/div&gt;&lt;div&gt;Testimonials&lt;br&gt;&lt;/div&gt;&lt;div&gt;FAQ&lt;/div&gt;&lt;div&gt;Email signup&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="210" y="143.5" width="167" height="167" as="geometry" />
+        </mxCell>
+        <mxCell id="0hT-b1IgBU58Ld49_TAB-8" value="About Us" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="250" width="94" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0hT-b1IgBU58Ld49_TAB-9" value="Support" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="290" width="94" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0hT-b1IgBU58Ld49_TAB-10" value="Blog?" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="330" width="94" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0hT-b1IgBU58Ld49_TAB-11" value="Policies" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="370" width="94" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="0hT-b1IgBU58Ld49_TAB-12" value="Terms &amp; Conditions" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="410" width="130" height="34" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
