@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-05-03T20:17:21.977Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="US-KHM9kgpNOQDDk8JyQ" version="24.3.1" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-03T20:17:48.776Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="YkViyAgSx37B_XdN1qQz" version="24.3.1" type="github">
   <diagram name="Page-1" id="Vd3vyi7NiTdGyAedGPBS">
     <mxGraphModel dx="2216" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -67,8 +67,11 @@
         <mxCell id="x93w_qvQvLiPiuIbv9Rr-7" value="Earnings" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="-37" y="810" width="94" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="x93w_qvQvLiPiuIbv9Rr-8" value="Earnings" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+        <mxCell id="x93w_qvQvLiPiuIbv9Rr-8" value="Analytics" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="-37" y="850" width="94" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="x93w_qvQvLiPiuIbv9Rr-9" value="Analytics" style="rounded=1;absoluteArcSize=1;arcSize=14;whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-37" y="890" width="94" height="34" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
