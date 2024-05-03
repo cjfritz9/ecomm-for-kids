@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-05-03T17:05:22.097Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="sd0QtlnfoEy8nXOSVY9o" version="24.3.1" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-03T17:05:54.241Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="fmFDdhmg6tALXXUwaIEp" version="24.3.1" type="github">
   <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
     <mxGraphModel dx="1434" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -23,13 +23,16 @@
           <mxGeometry x="270" y="30" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-12" value="MongoDB" style="rounded=0;whiteSpace=wrap;html=1;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
-          <mxGeometry x="270" y="100" width="120" height="60" as="geometry" />
+          <mxGeometry x="270" y="170" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-13" value="Builder.io" style="rounded=0;whiteSpace=wrap;html=1;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
           <mxGeometry x="140" y="30" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-15" value="Sanity.io" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#994C00;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
           <mxGeometry x="140" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="M8-b63AuhIMlsnjuittQ-5" value="OAuth2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-11">
+          <mxGeometry x="270" y="100" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-4" value="Core" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=32;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="369" y="24" width="90" height="50" as="geometry" />
