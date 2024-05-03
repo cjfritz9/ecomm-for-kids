@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-05-03T17:19:06.057Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="U8nPwJ9kd1fIt_GkORSp" version="24.3.1" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-03T20:16:47.807Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="kPEFcwyCvUPoFVGJO-HW" version="24.3.1" type="github">
   <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
     <mxGraphModel dx="1434" dy="804" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -22,8 +22,8 @@
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-11" value="SSO&lt;br&gt;Google, ..." style="rounded=0;whiteSpace=wrap;html=1;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
           <mxGeometry x="270" y="30" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="8rBIdCPRuKrs7vnbV3eI-12" value="MongoDB" style="rounded=0;whiteSpace=wrap;html=1;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
-          <mxGeometry x="270" y="170" width="120" height="60" as="geometry" />
+        <mxCell id="8rBIdCPRuKrs7vnbV3eI-12" value="Resend Email" style="rounded=0;whiteSpace=wrap;html=1;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
+          <mxGeometry x="400" y="30" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-13" value="Builder.io" style="rounded=0;whiteSpace=wrap;html=1;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
           <mxGeometry x="140" y="30" width="120" height="60" as="geometry" />
@@ -31,8 +31,14 @@
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-15" value="Sanity.io" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#994C00;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
           <mxGeometry x="140" y="100" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="M8-b63AuhIMlsnjuittQ-5" value="OAuth2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-11">
+        <mxCell id="M8-b63AuhIMlsnjuittQ-5" value="OAuth2" style="rounded=0;whiteSpace=wrap;html=1;" parent="dNxyNK7c78bLwvsdeMH5-11" vertex="1">
           <mxGeometry x="270" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ENMbmOwDRqdsmySxBkCO-1" value="Shopify Login/App Flow" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-11">
+          <mxGeometry x="270" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ENMbmOwDRqdsmySxBkCO-2" value="MongoDB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="dNxyNK7c78bLwvsdeMH5-11">
+          <mxGeometry x="530" y="30" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-4" value="Core" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=32;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="369" y="24" width="90" height="50" as="geometry" />
@@ -49,16 +55,16 @@
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-16" value="Mantine" style="rounded=0;whiteSpace=wrap;html=1;" parent="8rBIdCPRuKrs7vnbV3eI-5" vertex="1">
           <mxGeometry x="10" y="171" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="M8-b63AuhIMlsnjuittQ-1" value="Builder.io" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8rBIdCPRuKrs7vnbV3eI-5">
+        <mxCell id="M8-b63AuhIMlsnjuittQ-1" value="Builder.io" style="rounded=0;whiteSpace=wrap;html=1;" parent="8rBIdCPRuKrs7vnbV3eI-5" vertex="1">
           <mxGeometry x="140" y="30" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="M8-b63AuhIMlsnjuittQ-3" value="OAuth2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8rBIdCPRuKrs7vnbV3eI-5">
+        <mxCell id="M8-b63AuhIMlsnjuittQ-3" value="OAuth2" style="rounded=0;whiteSpace=wrap;html=1;" parent="8rBIdCPRuKrs7vnbV3eI-5" vertex="1">
           <mxGeometry x="270" y="30" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="M8-b63AuhIMlsnjuittQ-4" value="MongoDB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8rBIdCPRuKrs7vnbV3eI-5">
+        <mxCell id="M8-b63AuhIMlsnjuittQ-4" value="MongoDB" style="rounded=0;whiteSpace=wrap;html=1;" parent="8rBIdCPRuKrs7vnbV3eI-5" vertex="1">
           <mxGeometry x="270" y="101" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="M8-b63AuhIMlsnjuittQ-6" value="Shopify Admin API" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8rBIdCPRuKrs7vnbV3eI-5">
+        <mxCell id="M8-b63AuhIMlsnjuittQ-6" value="Shopify Admin API" style="rounded=0;whiteSpace=wrap;html=1;" parent="8rBIdCPRuKrs7vnbV3eI-5" vertex="1">
           <mxGeometry x="140" y="101" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8rBIdCPRuKrs7vnbV3eI-9" value="Admin" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=32;fontStyle=1" parent="1" vertex="1">
