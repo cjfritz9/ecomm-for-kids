@@ -45,6 +45,12 @@ const SignupForm: React.FC = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
   return (
     <Stack w={{ base: '100%', xs: 'fit-content' }}>
       <Title>SiteName</Title>
@@ -68,6 +74,7 @@ const SignupForm: React.FC = () => {
           mt="md"
           onFocus={() => setFormStatus({ isValid: null, message: '' })}
           onChange={(e) => setFormData((prev) => ({ ...prev, passwordConfirm: e.target.value }))}
+          onKeyDown={handleKeyDown}
         />
         <Flex mt="xs">
           <Text size="xs" mr="4px">

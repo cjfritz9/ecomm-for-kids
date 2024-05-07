@@ -18,12 +18,30 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
 
-    const user = await prisma.user.create({ data: { email, password: hashedPassword } });
+    if (!user) {
+      return NextResponse.json(
+        { status: 'error', message: `${email} not found`, data: null },
+        { status: 400 }
+      );
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return NextResponse.json(
+        { status: 'error', message: `Incorrect password`, data: null },
+        { status: 400 }
+      );
+    }
 
     return NextResponse.json(
-      { status: 'ok', message: `${body.email} created`, data: { id: user.id, email } },
+      { status: 'ok', message: 'Successfully logged in', data: { id: user.id, email } },
       { status: 201 }
     );
   } catch (error) {

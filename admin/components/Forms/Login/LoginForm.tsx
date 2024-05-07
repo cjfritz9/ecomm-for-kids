@@ -18,13 +18,28 @@ import { IoLogoFacebook } from 'react-icons/io';
 import Link from 'next/link';
 import { FormStatus } from '@/@types/auth';
 import { validateLogin } from '@/lib/utils/auth';
+import { loginUser, registerUser } from '@/app/api/requests/auth';
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [formStatus, setFormStatus] = useState<FormStatus>({ isValid: null, message: '' });
 
   const handleSubmit = async () => {
-    
+    const result = await loginUser({ email: formData.email, password: formData.password });
+
+    if (result && result.status === 'ok') {
+      setFormStatus({ isValid: true, message: 'Success' });
+    } else if (result && result.status === 'error') {
+      setFormStatus({ isValid: false, message: result.message });
+    } else {
+      setFormStatus({ isValid: false, message: 'Server Error, try again soon' });
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
   };
 
   return (
@@ -44,6 +59,7 @@ const LoginForm: React.FC = () => {
             required
             mt="md"
             onChange={(e) => setFormData((prev) => ({ ...prev, password: e.target.value }))}
+            onKeyDown={handleKeyDown}
           />
           <Flex mt="xs">
             <Text size="xs" mr="4px">
@@ -53,8 +69,15 @@ const LoginForm: React.FC = () => {
               Sign up
             </Link>
           </Flex>
-          <Button fullWidth mt="lg" disabled={!formData.email || !formData.password} onClick={handleSubmit}>
-            Login
+          <Button
+            fullWidth
+            bg={formStatus.isValid ? 'green.6' : formStatus.isValid === false ? 'red.6' : undefined}
+            c={formStatus.isValid !== null ? 'black' : undefined}
+            mt="lg"
+            disabled={formStatus.isValid === false || !formData.email || !formData.password}
+            onClick={handleSubmit}
+          >
+            {formStatus.isValid !== null && formStatus.message ? formStatus.message : 'Login'}
           </Button>
           <Divider my="lg" label="or" />
           <Stack>

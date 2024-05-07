@@ -17,4 +17,5 @@ export interface ValidationResult {
   uiMessage: string;
 }
 
-export type RegisterUserData = LoginFormFields;
+
+export type UserCredentials = LoginFormFields;
