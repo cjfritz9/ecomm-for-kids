@@ -2,9 +2,13 @@ import '@mantine/core/styles.css';
 import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '../theme';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'E-commerce For Kids',
+export const metadata: Metadata = {
+  title: {
+    template: '%s | E-commerce For Kids',
+    default: 'E-commerce For Kids',
+  },
   description: '',
 };
 
