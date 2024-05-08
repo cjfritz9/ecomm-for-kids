@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Group, Code, Text } from '@mantine/core';
+import { Group, Code, Text, Container } from '@mantine/core';
 import {
   IconSwitchHorizontal,
   IconLogout,
@@ -58,21 +58,23 @@ const Navbar: React.FC = () => {
   }, [pathname]);
 
   return (
-    <nav className={classes.navbar}>
-      <div className={classes.navbarMain}>{links}</div>
+    <Container className={classes.navContainer}>
+      <nav className={classes.navbar}>
+        <div className={classes.navbarMain}>{links}</div>
 
-      <div className={classes.footer}>
-        <a href="/dashboard/settings" className={classes.link}>
-          <IconSettings className={classes.linkIcon} stroke={1.5} />
-          <span>Settings</span>
-        </a>
+        <div className={classes.footer}>
+          <a href="/dashboard/settings" className={classes.link}>
+            <IconSettings className={classes.linkIcon} stroke={1.5} />
+            <span className={classes.linkLabel}>Settings</span>
+          </a>
 
-        <a href="/logout" className={classes.link}>
-          <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Logout</span>
-        </a>
-      </div>
-    </nav>
+          <a href="/logout" className={classes.link}>
+            <IconLogout className={classes.linkIcon} stroke={1.5} />
+            <span className={classes.linkLabel}>Logout</span>
+          </a>
+        </div>
+      </nav>
+    </Container>
   );
 };
 

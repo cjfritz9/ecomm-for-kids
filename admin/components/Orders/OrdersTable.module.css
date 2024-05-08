@@ -1,7 +1,11 @@
 .container {
   border: 1px solid var(--mantine-color-gray-4);
   border-radius: 16px;
-  overflow: hidden;
+  overflow: clip;
+}
+
+.scroll::after {
+  margin: 4px 4px;
 }
 
 .th {

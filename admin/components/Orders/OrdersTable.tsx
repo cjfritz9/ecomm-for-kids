@@ -104,7 +104,7 @@ const OrdersTable: React.FC<Props> = ({ data }) => {
   ));
 
   return (
-    <ScrollArea>
+    <Box>
       <TextInput
         placeholder="Search by any field"
         my="md"
@@ -112,49 +112,57 @@ const OrdersTable: React.FC<Props> = ({ data }) => {
         value={search}
         onChange={handleSearchChange}
       />
-      <Box className={classes.container}>
-        <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} layout="fixed">
-          <Table.Tbody>
-            <Table.Tr bg="gray.1">
-              <Th
-                sorted={sortBy === 'name'}
-                reversed={reverseSortDirection}
-                onSort={() => setSorting('name')}
-              >
-                Name
-              </Th>
-              <Th
-                sorted={sortBy === 'email'}
-                reversed={reverseSortDirection}
-                onSort={() => setSorting('email')}
-              >
-                Email
-              </Th>
-              <Th
-                sorted={sortBy === 'company'}
-                reversed={reverseSortDirection}
-                onSort={() => setSorting('company')}
-              >
-                Company
-              </Th>
-            </Table.Tr>
-          </Table.Tbody>
-          <Table.Tbody>
-            {rows.length > 0 ? (
-              rows
-            ) : (
-              <Table.Tr>
-                <Table.Td colSpan={Object.keys(data[0]).length}>
-                  <Text fw={500} ta="center">
-                    Nothing found
-                  </Text>
-                </Table.Td>
+      <ScrollArea type="auto" styles={{ scrollbar: { margin: '0px 8px' } }}>
+        <Box className={classes.container}>
+          <Table
+            horizontalSpacing="md"
+            verticalSpacing="md"
+            layout="fixed"
+            miw={800}
+            style={{ overflow: 'scroll' }}
+          >
+            <Table.Tbody>
+              <Table.Tr bg="gray.1">
+                <Th
+                  sorted={sortBy === 'name'}
+                  reversed={reverseSortDirection}
+                  onSort={() => setSorting('name')}
+                >
+                  Name
+                </Th>
+                <Th
+                  sorted={sortBy === 'email'}
+                  reversed={reverseSortDirection}
+                  onSort={() => setSorting('email')}
+                >
+                  Email
+                </Th>
+                <Th
+                  sorted={sortBy === 'company'}
+                  reversed={reverseSortDirection}
+                  onSort={() => setSorting('company')}
+                >
+                  Company
+                </Th>
               </Table.Tr>
-            )}
-          </Table.Tbody>
-        </Table>
-      </Box>
-    </ScrollArea>
+            </Table.Tbody>
+            <Table.Tbody>
+              {rows.length > 0 ? (
+                rows
+              ) : (
+                <Table.Tr>
+                  <Table.Td colSpan={Object.keys(data[0]).length}>
+                    <Text fw={500} ta="center">
+                      Nothing found
+                    </Text>
+                  </Table.Td>
+                </Table.Tr>
+              )}
+            </Table.Tbody>
+          </Table>
+        </Box>
+      </ScrollArea>
+    </Box>
   );
 };
 

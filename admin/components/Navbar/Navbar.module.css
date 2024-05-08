@@ -1,5 +1,12 @@
+.navContainer {
+  min-width: rem(256px);
+}
+
 .navbar {
-  height: rem(700px);
+  position: fixed;
+  top: 56px;
+  bottom: 0;
+  height: calc(100% - 56px);
   width: rem(240px);
   min-width: rem(240px);
   padding: var(--mantine-spacing-md);
@@ -10,6 +17,7 @@
 
 .navbarMain {
   flex: 1;
+  overflow-y: auto;
 }
 
 .header {
@@ -64,12 +72,20 @@
 }
 
 @media screen and (max-width: 640px) {
+  .navContainer {
+    display: none;
+  }
+
   .navbar {
     display: none;
   }
 }
 
 @media screen and (max-width: 1024px) {
+  .navContainer {
+    min-width: rem(100px);
+  }
+
   .navbar {
     min-width: auto;
     width: rem(84px);

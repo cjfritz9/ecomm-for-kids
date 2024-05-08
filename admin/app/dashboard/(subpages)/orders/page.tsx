@@ -4,7 +4,7 @@ import React from 'react';
 
 const OrdersPage: React.FC = () => {
   return (
-    <Box p="sm">
+    <Box p="sm" style={{overflowY: 'scroll'}}>
       <Title>Orders</Title>
       <OrdersTable
         data={[
