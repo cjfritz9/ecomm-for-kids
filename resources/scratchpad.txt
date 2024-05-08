@@ -1,0 +1,6 @@
+Printify Object:
+{
+    sales_channel_properties: {
+      shopify: {collections: ["279393206353"]}
+    }
+}
