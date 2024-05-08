@@ -20,10 +20,13 @@ import PasswordWithMeter from '../PasswordWithMeter/PasswordWithMeter';
 import { validateSignup } from '@/lib/utils/auth';
 import { FormStatus } from '@/@types/auth';
 import { registerUser } from '@/app/api/requests/auth';
+import { useRouter } from 'next/navigation';
 
 const SignupForm: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '', passwordConfirm: '' });
   const [formStatus, setFormStatus] = useState<FormStatus>({ isValid: null, message: '' });
+  
+  const router = useRouter();
 
   const handleSubmit = async () => {
     const { success, uiMessage } = validateSignup(formData);
@@ -31,10 +34,12 @@ const SignupForm: React.FC = () => {
     if (success) {
       const result = await registerUser({ email: formData.email, password: formData.password });
 
-      console.log(result);
-
       if (result && result.status === 'ok') {
         setFormStatus({ isValid: true, message: uiMessage });
+
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 1000);
       } else if (result && result.status === 'error') {
         setFormStatus({ isValid: false, message: result.message });
       } else {
@@ -52,7 +57,10 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <Stack w={{ base: '100%', xs: 'fit-content' }}>
+    <Stack
+      w={{ base: '100%', xs: 'fit-content' }}
+      style={{ opacity: formStatus.isValid ? 0 : 1, transition: 'opacity 1s ease' }}
+    >
       <Title>SiteName</Title>
       <Fieldset legend="Sign Up" w={{ base: '100%', xs: '400px' }}>
         <TextInput

@@ -20,7 +20,9 @@ export const POST = async (req: NextRequest) => {
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
-    const user = await prisma.user.create({ data: { email, password: hashedPassword } });
+    const user = await prisma.user.create({
+      data: { email, password: hashedPassword, createdAt: new Date() },
+    });
 
     return NextResponse.json(
       { status: 'ok', message: `${body.email} created`, data: { id: user.id, email } },
@@ -41,7 +43,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     return NextResponse.json(
-      { status: 'error', message: `Unhandled server error`, data: null },
+      { status: 'error', message: `Server error`, data: null },
       { status: 500 }
     );
   }

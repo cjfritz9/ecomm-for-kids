@@ -19,16 +19,23 @@ import Link from 'next/link';
 import { FormStatus } from '@/@types/auth';
 import { validateLogin } from '@/lib/utils/auth';
 import { loginUser, registerUser } from '@/app/api/requests/auth';
+import { useRouter } from 'next/navigation';
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [formStatus, setFormStatus] = useState<FormStatus>({ isValid: null, message: '' });
+
+  const router = useRouter();
 
   const handleSubmit = async () => {
     const result = await loginUser({ email: formData.email, password: formData.password });
 
     if (result && result.status === 'ok') {
       setFormStatus({ isValid: true, message: 'Success' });
+
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 1000);
     } else if (result && result.status === 'error') {
       setFormStatus({ isValid: false, message: result.message });
     } else {
@@ -44,7 +51,10 @@ const LoginForm: React.FC = () => {
 
   return (
     <div>
-      <Stack w={{ base: '100%', xs: 'fit-content' }}>
+      <Stack
+        w={{ base: '100%', xs: 'fit-content' }}
+        style={{ opacity: formStatus.isValid ? 0 : 1, transition: 'opacity 1s ease' }}
+      >
         <Title>SiteName</Title>
         <Fieldset legend="Login" w={{ base: '100%', xs: '400px' }}>
           <TextInput
