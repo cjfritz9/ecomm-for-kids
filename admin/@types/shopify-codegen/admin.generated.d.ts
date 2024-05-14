@@ -13,14 +13,18 @@ export type CreateDraftOrderMutationVariables = AdminTypes.Exact<{
 export type CreateDraftOrderMutation = { draftOrderCreate?: AdminTypes.Maybe<{ draftOrder?: AdminTypes.Maybe<Pick<AdminTypes.DraftOrder, 'id'>>, userErrors: Array<Pick<AdminTypes.UserError, 'field' | 'message'>> }> };
 
 export type GetDraftOrdersByIdQueryVariables = AdminTypes.Exact<{
-  storeId: AdminTypes.Scalars['String']['input'];
+  searchQuery: AdminTypes.Scalars['String']['input'];
 }>;
 
 
-export type GetDraftOrdersByIdQuery = { draftOrders: { nodes: Array<Pick<AdminTypes.DraftOrder, 'id' | 'name'>> } };
+export type GetDraftOrdersByIdQuery = { draftOrders: { nodes: Array<(
+      Pick<AdminTypes.DraftOrder, 'createdAt' | 'status' | 'totalPrice'>
+      & { orderId: AdminTypes.DraftOrder['id'], orderNumber: AdminTypes.DraftOrder['name'] }
+      & { customer?: AdminTypes.Maybe<Pick<AdminTypes.Customer, 'displayName'>> }
+    )> } };
 
 interface GeneratedQueryTypes {
-  "\n    #graphql\n    query getDraftOrdersById($storeId: String!) {\n      draftOrders(first: 15, query: \"tag:$storeId\") {\n        nodes {\n          id\n          name\n        }\n      }\n    }\n  ": {return: GetDraftOrdersByIdQuery, variables: GetDraftOrdersByIdQueryVariables},
+  "\n    #graphql\n    query getDraftOrdersById($searchQuery: String!) {\n      draftOrders(first: 15, query: $searchQuery) {\n        nodes {\n          orderId: id\n          orderNumber: name\n          createdAt\n          customer: customer {\n            displayName\n          }\n          status\n          totalPrice\n        }\n      }\n    }\n  ": {return: GetDraftOrdersByIdQuery, variables: GetDraftOrdersByIdQueryVariables},
 }
 
 interface GeneratedMutationTypes {

@@ -3,11 +3,10 @@ import { CustomAttribute, LineItem } from "./shopify";
 export interface RowData {
   orderId: string;
   orderNumber: string;
-  date: string;
+  createdAt: string;
   customer: string;
   status: string;
   totalPrice: string;
-
 }
 
 export interface OrderData {

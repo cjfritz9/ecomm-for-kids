@@ -76,7 +76,6 @@ function sortData(
 }
 
 const OrdersTable: React.FC<Props> = ({ data }) => {
-  console.log(data);
   const [search, setSearch] = useState('');
   const [sortedData, setSortedData] = useState(data);
   const [sortBy, setSortBy] = useState<keyof RowData | null>(null);
@@ -96,12 +95,12 @@ const OrdersTable: React.FC<Props> = ({ data }) => {
   };
 
   const rows = sortedData.map((row) => (
-    <Table.Tr key={row.status}>
+    <Table.Tr key={row.orderId}>
       <Table.Td>{row.orderNumber}</Table.Td>
-      <Table.Td>{row.date}</Table.Td>
+      <Table.Td>{row.createdAt}</Table.Td>
       <Table.Td>{row.customer}</Table.Td>
       <Table.Td>{row.status}</Table.Td>
-      <Table.Td>{row.totalPrice}</Table.Td>
+      <Table.Td>${row.totalPrice}</Table.Td>
     </Table.Tr>
   ));
 
@@ -133,9 +132,9 @@ const OrdersTable: React.FC<Props> = ({ data }) => {
                   Order Number
                 </Th>
                 <Th
-                  sorted={sortBy === 'date'}
+                  sorted={sortBy === 'createdAt'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('date')}
+                  onSort={() => setSorting('createdAt')}
                 >
                   Date
                 </Th>

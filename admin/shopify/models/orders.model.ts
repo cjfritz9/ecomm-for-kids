@@ -1,6 +1,8 @@
 import { OrderCreateFields } from '@/@types/orders';
 import adminClient from '../clients/admin-client';
 import logger from '@/app/api/logger';
+import { formatShopifyDraftOrders } from '@/app/api/utils';
+import { OrderData } from '@/@types/shopify';
 
 export const createDraftOrder = async ({ email, lineItems, storeId }: OrderCreateFields) => {
   console.log(email, lineItems, storeId);
@@ -65,8 +67,14 @@ export const getOrdersByStoreId = async (storeId: string) => {
     query getDraftOrdersById($searchQuery: String!) {
       draftOrders(first: 15, query: $searchQuery) {
         nodes {
-          id
-          name
+          orderId: id
+          orderNumber: name
+          createdAt
+          customer: customer {
+            displayName
+          }
+          status
+          totalPrice
         }
       }
     }
@@ -80,7 +88,8 @@ export const getOrdersByStoreId = async (storeId: string) => {
     });
 
     if (res?.data?.draftOrders?.nodes) {
-      return res.data.draftOrders;
+      const orders = formatShopifyDraftOrders(res.data.draftOrders.nodes as OrderData[]);
+      return orders;
     } else {
       logger.error(`
         ${JSON.stringify(res)}
