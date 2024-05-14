@@ -1,8 +1,12 @@
-import prisma from '@/db/prisma';
+import prisma from '@/prisma/client';
 import { Prisma } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { UserCredentials } from '@/@types/auth';
+import { APIResponse } from '../../response';
+import logger from '../../logger';
+import { cookies } from 'next/headers';
 
 const SALT_ROUNDS = 10;
 
@@ -12,10 +16,7 @@ export const POST = async (req: NextRequest) => {
 
   try {
     if (!email || !password) {
-      return NextResponse.json(
-        { status: 'error', message: `Missing Username/Password`, data: null },
-        { status: 400 }
-      );
+      return new APIResponse('error', 400, 'Missing Username/Password', null).asNextResponse();
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
@@ -24,27 +25,47 @@ export const POST = async (req: NextRequest) => {
       data: { email, password: hashedPassword, createdAt: new Date() },
     });
 
-    return NextResponse.json(
-      { status: 'ok', message: `${body.email} created`, data: { id: user.id, email } },
-      { status: 201 }
-    );
+    if (user) {
+      const store = await prisma.store.create({
+        data: {
+          name: 'My Store',
+          handle: `default-store-${user.id}-${new Date().toDateString()}`,
+          createdAt: new Date(),
+          ownerId: user.id,
+        },
+      });
+
+      if (store) {
+        const token = jwt.sign({ userId: user.id, storeId: store.id }, process.env.JWT_SECRET!, {
+          expiresIn: '30d',
+        });
+        cookies().set('accessToken', token);
+        return new APIResponse('ok', 201, `${email} created`, { id: user.id }).asNextResponse();
+      }
+    } else {
+      prisma.user.delete({
+        where: {
+          email,
+        },
+      });
+    }
+    return new APIResponse('error', 500, 'Error creating store', null).asNextResponse();
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === 'P2002') {
-        return NextResponse.json(
-          { status: 'error', message: `${email} already exists`, data: null },
-          { status: 400 }
-        );
+      if (error.code === 'P2002' && error.meta?.target === 'User_email_key') {
+        logger.error(`
+          ${error}
+          source: POST User Registration API - Prisma Non-Unique Email
+        `);
+        return new APIResponse('error', 400, `${email} is taken`, null).asNextResponse();
       } else {
-        console.error('_____UNKNOWN_ERROR_____');
-        console.error(error);
-        console.error('_____UNKNOWN_ERROR_____');
+        logger.error(`
+          ${error}
+          source: POST User Registration API - Unknown
+        `);
       }
     }
 
-    return NextResponse.json(
-      { status: 'error', message: `Server error`, data: null },
-      { status: 500 }
-    );
+    return new APIResponse('error', 500, 'Server error', null).asNextResponse();
   }
 };

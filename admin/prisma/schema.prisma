@@ -18,22 +18,17 @@ model User {
   email         String   @unique
   password      String
   stores        Store[]
-  activeStoreId String   @unique @db.ObjectId
+  activeStoreId String?
   createdAt     DateTime
   updatedAt     DateTime @updatedAt
 }
 
 model Store {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
+  name      String
   handle    String   @unique
   owner     User     @relation(fields: [ownerId], references: [id])
   ownerId   String   @unique @db.ObjectId
   createdAt DateTime
   updatedAt DateTime @updatedAt
-}
-
-model Order {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-
 }

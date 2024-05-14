@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Metadata } from 'next';
 import { Center } from '@mantine/core';
-import LoginForm from '@/components/Forms/Login/LoginForm';
+import LoginForm from '@/components/Forms/Auth/Login/LoginForm';
 
 export const metadata: Metadata = {
   title: 'Login',

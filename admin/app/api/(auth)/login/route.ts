@@ -1,10 +1,8 @@
-import prisma from '@/db/prisma';
+import prisma from '@/prisma/client';
 import { Prisma } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
 import { UserCredentials } from '@/@types/auth';
-
-const SALT_ROUNDS = 10;
 
 export const POST = async (req: NextRequest) => {
   const body = (await req.json()) as UserCredentials;

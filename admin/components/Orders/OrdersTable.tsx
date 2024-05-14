@@ -12,7 +12,6 @@ import {
   rem,
   keys,
   Box,
-  stylesToString,
 } from '@mantine/core';
 import { IconSelector, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons-react';
 import classes from './OrdersTable.module.css';
@@ -77,6 +76,7 @@ function sortData(
 }
 
 const OrdersTable: React.FC<Props> = ({ data }) => {
+  console.log(data);
   const [search, setSearch] = useState('');
   const [sortedData, setSortedData] = useState(data);
   const [sortBy, setSortBy] = useState<keyof RowData | null>(null);
@@ -96,10 +96,12 @@ const OrdersTable: React.FC<Props> = ({ data }) => {
   };
 
   const rows = sortedData.map((row) => (
-    <Table.Tr key={row.name}>
-      <Table.Td>{row.name}</Table.Td>
-      <Table.Td>{row.email}</Table.Td>
-      <Table.Td>{row.company}</Table.Td>
+    <Table.Tr key={row.status}>
+      <Table.Td>{row.orderNumber}</Table.Td>
+      <Table.Td>{row.date}</Table.Td>
+      <Table.Td>{row.customer}</Table.Td>
+      <Table.Td>{row.status}</Table.Td>
+      <Table.Td>{row.totalPrice}</Table.Td>
     </Table.Tr>
   ));
 
@@ -124,25 +126,39 @@ const OrdersTable: React.FC<Props> = ({ data }) => {
             <Table.Tbody>
               <Table.Tr bg="gray.1">
                 <Th
-                  sorted={sortBy === 'name'}
+                  sorted={sortBy === 'orderNumber'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('name')}
+                  onSort={() => setSorting('orderNumber')}
                 >
-                  Name
+                  Order Number
                 </Th>
                 <Th
-                  sorted={sortBy === 'email'}
+                  sorted={sortBy === 'date'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('email')}
+                  onSort={() => setSorting('date')}
                 >
-                  Email
+                  Date
                 </Th>
                 <Th
-                  sorted={sortBy === 'company'}
+                  sorted={sortBy === 'customer'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('company')}
+                  onSort={() => setSorting('customer')}
                 >
-                  Company
+                  Customer
+                </Th>
+                <Th
+                  sorted={sortBy === 'status'}
+                  reversed={reverseSortDirection}
+                  onSort={() => setSorting('status')}
+                >
+                  Status
+                </Th>
+                <Th
+                  sorted={sortBy === 'totalPrice'}
+                  reversed={reverseSortDirection}
+                  onSort={() => setSorting('totalPrice')}
+                >
+                  Total
                 </Th>
               </Table.Tr>
             </Table.Tbody>
@@ -151,7 +167,7 @@ const OrdersTable: React.FC<Props> = ({ data }) => {
                 rows
               ) : (
                 <Table.Tr>
-                  <Table.Td colSpan={Object.keys(data[0]).length}>
+                  <Table.Td>
                     <Text fw={500} ta="center">
                       Nothing found
                     </Text>

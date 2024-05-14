@@ -21,26 +21,32 @@ import { validateSignup } from '@/lib/utils/auth';
 import { FormStatus } from '@/@types/auth';
 import { registerUser } from '@/app/api/requests/auth';
 import { useRouter } from 'next/navigation';
+import { APIResponse } from '@/app/api/response';
+import { ServerResponse } from '@/@types/api';
 
 const SignupForm: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '', passwordConfirm: '' });
   const [formStatus, setFormStatus] = useState<FormStatus>({ isValid: null, message: '' });
-  
+
   const router = useRouter();
 
   const handleSubmit = async () => {
     const { success, uiMessage } = validateSignup(formData);
 
     if (success) {
-      const result = await registerUser({ email: formData.email, password: formData.password });
-
-      if (result && result.status === 'ok') {
+      const result = (await registerUser({
+        email: formData.email,
+        password: formData.password,
+      })) as ServerResponse;
+      
+      console.log(result);
+      if (result && result.statusMessage === 'ok') {
         setFormStatus({ isValid: true, message: uiMessage });
 
         setTimeout(() => {
           router.push('/dashboard');
         }, 1000);
-      } else if (result && result.status === 'error') {
+      } else if (result && result.statusMessage === 'error') {
         setFormStatus({ isValid: false, message: result.message });
       } else {
         setFormStatus({ isValid: false, message: 'Server Error, try again soon' });

@@ -4,7 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { IoLogoFacebook } from 'react-icons/io';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import SignupForm from '@/components/Forms/Signup/SignupForm';
+import SignupForm from '@/components/Forms/Auth/Signup/SignupForm';
 
 export const metadata: Metadata = {
   title: 'Signup',
