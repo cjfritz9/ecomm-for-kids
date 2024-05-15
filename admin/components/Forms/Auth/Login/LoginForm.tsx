@@ -31,7 +31,6 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = async () => {
     const result = await loginUser({ email: formData.email, password: formData.password });
-    console.log(result)
     if (result && result.status === 'ok') {
       setFormStatus({ isValid: true, message: 'Success' });
       setIsLoggedIn(true);
@@ -65,6 +64,7 @@ const LoginForm: React.FC = () => {
             placeholder="Email"
             required
             onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+            onFocus={() => setFormStatus({ isValid: null, message: '' })}
           />
           <PasswordInput
             label="Password"
@@ -73,6 +73,7 @@ const LoginForm: React.FC = () => {
             mt="md"
             onChange={(e) => setFormData((prev) => ({ ...prev, password: e.target.value }))}
             onKeyDown={handleKeyDown}
+            onFocus={() => setFormStatus({ isValid: null, message: '' })}
           />
           <Flex mt="xs">
             <Text size="xs" mr="4px">

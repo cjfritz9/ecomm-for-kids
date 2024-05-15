@@ -14,7 +14,6 @@ const OrdersPage: React.FC = async () => {
     userId: string;
     storeId: string;
   };
-  console.log(decoded)
   const res = await fetch(`http://localhost:3000/api/shopify/orders/store/${decoded.storeId}`);
   const orders = await res.json();
   return (

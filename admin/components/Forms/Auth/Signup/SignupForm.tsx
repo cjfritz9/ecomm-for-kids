@@ -38,8 +38,7 @@ const SignupForm: React.FC = () => {
         email: formData.email,
         password: formData.password,
       })) as ServerResponse;
-      
-      console.log(result);
+
       if (result && result.statusMessage === 'ok') {
         setFormStatus({ isValid: true, message: uiMessage });
 

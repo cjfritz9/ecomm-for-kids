@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Group, Code, Text, Container } from '@mantine/core';
+import { Container } from '@mantine/core';
 import {
-  IconSwitchHorizontal,
   IconLogout,
   IconHome,
   IconInbox,
@@ -16,7 +15,7 @@ import {
 } from '@tabler/icons-react';
 import classes from './Navbar.module.css';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const data = [
   { link: '/', label: 'Home', icon: IconHome },
@@ -29,8 +28,21 @@ const data = [
 ];
 
 const Navbar: React.FC = () => {
-  const [active, setActive] = useState('Home');
+  const [active, setActive] = useState('');
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const res = await fetch('/api/logout', {
+      method: 'POST'
+    });
+
+    const result = await res.json();
+
+    console.log(result);
+
+    router.push('/login');
+  };
 
   const links = data.map((item) => (
     <Link
@@ -68,7 +80,7 @@ const Navbar: React.FC = () => {
             <span className={classes.linkLabel}>Settings</span>
           </a>
 
-          <a href="/logout" className={classes.link}>
+          <a href="#" className={classes.link} onClick={handleLogout}>
             <IconLogout className={classes.linkIcon} stroke={1.5} />
             <span className={classes.linkLabel}>Logout</span>
           </a>

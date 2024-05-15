@@ -1,14 +1,5 @@
 import { AuthContext } from '@/context/AuthProvider';
-import { getCookie } from '@/lib/utils/cookies';
-import { Menu, Button, Text, rem, Loader } from '@mantine/core';
-import {
-  IconSettings,
-  IconSearch,
-  IconPhoto,
-  IconMessageCircle,
-  IconTrash,
-  IconArrowsLeftRight,
-} from '@tabler/icons-react';
+import { Menu, Button, Loader } from '@mantine/core';
 import { useContext, useEffect, useState } from 'react';
 
 const StoresMenu: React.FC = () => {
@@ -28,7 +19,6 @@ const StoresMenu: React.FC = () => {
     }
   }, [token.userId]);
 
-  console.log(stores);
   const [activeStore, ...otherStores] = stores as any[];
 
   return (
