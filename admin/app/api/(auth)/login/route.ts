@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserCredentials } from '@/@types/auth';
 import { cookies } from 'next/headers';
+import { APIResponse } from '../../response';
 
 export const POST = async (req: NextRequest) => {
   const body = (await req.json()) as UserCredentials;
@@ -40,22 +41,25 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
+    const store = await prisma.store.findFirst({
+      where: {
+        id: user.activeStoreId!
+      },
+    });
+
+    if (!store) {
+      return new APIResponse('error', 401, 'No store found for user', null).asNextResponse();
+    }
+
     if (!user.activeStoreId) {
-      const store = await prisma.store.findFirst({
+      user = await prisma.user.update({
         where: {
-          ownerId: user.id,
+          id: user.id,
+        },
+        data: {
+          activeStoreId: store.id,
         },
       });
-      if (store) {
-        user = await prisma.user.update({
-          where: {
-            id: user.id,
-          },
-          data: {
-            activeStoreId: store.id,
-          },
-        });
-      }
     }
 
     const token = jwt.sign(
@@ -67,11 +71,18 @@ export const POST = async (req: NextRequest) => {
     );
     cookies().set('accessToken', token);
 
+    console.log(store)
+
     return NextResponse.json(
       {
         status: 'ok',
-        message: 'Successfully logged in',
-        data: { id: user.id, email, token: jwt.verify(token, process.env.JWT_SECRET!) },
+        message: 'Login successful',
+        data: {
+          id: user.id,
+          email,
+          token: jwt.verify(token, process.env.JWT_SECRET!),
+          store,
+        },
       },
       { status: 201 }
     );

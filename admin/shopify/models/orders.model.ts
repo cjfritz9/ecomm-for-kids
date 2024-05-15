@@ -63,7 +63,7 @@ export const getOrdersByStoreId = async (storeId: string) => {
   try {
     const data = `
     #graphql
-    query getDraftOrdersById($searchQuery: String!) {
+    query getOrdersByStoreId($searchQuery: String!) {
       draftOrders(first: 15, query: $searchQuery) {
         nodes {
           orderId: id
@@ -81,7 +81,7 @@ export const getOrdersByStoreId = async (storeId: string) => {
 
     const res = await adminClient.request(data, {
       variables: {
-        searchQuery: `tag:${storeId}`,
+        searchQuery: `tag:child_store_id:${storeId}`,
       },
       retries: 2,
     });

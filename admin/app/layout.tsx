@@ -8,6 +8,8 @@ import Header from '@/components/Header/Header';
 import AuthProvider from '@/context/AuthProvider';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import StoreProvider from '@/context/StoreProvider';
+import { getServerSideStoreData } from './api/utils';
 
 export const metadata: Metadata = {
   title: {
@@ -17,13 +19,20 @@ export const metadata: Metadata = {
   description: '',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default async function RootLayout({ children }: { children: any }) {
   const token = cookies().get('accessToken');
-  let decoded = null;
+  let decoded: any = null;
+  let storeData: any;
   if (token) {
     decoded = jwt.verify(token.value, process.env.JWT_SECRET!);
   }
 
+  if (decoded) {
+    const storeDataRes = await getServerSideStoreData(decoded.userId);
+    if (storeDataRes) {
+      storeData = storeDataRes;
+    }
+  }
 
   return (
     <html lang="en">
@@ -38,8 +47,10 @@ export default function RootLayout({ children }: { children: any }) {
       <body>
         <MantineProvider theme={theme}>
           <AuthProvider token={decoded}>
-            <Header />
-            {children}
+            <StoreProvider storeDataServer={storeData}>
+              <Header />
+              {children}
+            </StoreProvider>
           </AuthProvider>
         </MantineProvider>
       </body>

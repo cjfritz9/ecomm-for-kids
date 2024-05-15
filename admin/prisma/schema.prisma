@@ -24,11 +24,12 @@ model User {
 }
 
 model Store {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  handle    String   @unique
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   String   @db.ObjectId
-  createdAt DateTime
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  handle       String   @unique
+  owner        User     @relation(fields: [ownerId], references: [id])
+  ownerId      String   @db.ObjectId
+  createdAt    DateTime
+  updatedAt    DateTime @updatedAt
+  collectionId String?
 }

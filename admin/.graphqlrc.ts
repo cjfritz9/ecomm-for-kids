@@ -1,4 +1,4 @@
-import {ApiType, pluckConfig, preset} from '@shopify/api-codegen-preset';
+import { ApiType, pluckConfig, preset } from '@shopify/api-codegen-preset';
 
 export default {
   // For syntax highlighting / auto-complete when writing operations
@@ -16,7 +16,7 @@ export default {
           generates: {
             './@types/shopify-codegen/admin.schema.json': {
               plugins: ['introspection'],
-              config: {minify: true},
+              config: { minify: true },
             },
             './@types/shopify-codegen/admin.types.d.ts': {
               plugins: ['typescript'],

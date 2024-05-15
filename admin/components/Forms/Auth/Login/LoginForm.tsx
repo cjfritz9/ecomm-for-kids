@@ -21,11 +21,13 @@ import { validateLogin } from '@/lib/utils/auth';
 import { loginUser, registerUser } from '@/app/api/requests/auth';
 import { useRouter } from 'next/navigation';
 import { AuthContext } from '@/context/AuthProvider';
+import { StoreContext } from '@/context/StoreProvider';
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [formStatus, setFormStatus] = useState<FormStatus>({ isValid: null, message: '' });
   const { setIsLoggedIn, setToken } = useContext(AuthContext);
+  const { setName, setStoreId, setCollectionId } = useContext(StoreContext);
 
   const router = useRouter();
 
@@ -35,6 +37,10 @@ const LoginForm: React.FC = () => {
       setFormStatus({ isValid: true, message: 'Success' });
       setIsLoggedIn(true);
       setToken(result.data.token);
+      console.log(result.data.store)
+      setName(result.data.store.name)
+      setStoreId(result.data.store.id)
+      setCollectionId(result.data.store.collectionId)
       setTimeout(() => {
         router.push('/dashboard');
       }, 1000);
@@ -63,6 +69,7 @@ const LoginForm: React.FC = () => {
             label="Email"
             placeholder="Email"
             required
+            autoComplete="username"
             onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
             onFocus={() => setFormStatus({ isValid: null, message: '' })}
           />
@@ -71,6 +78,7 @@ const LoginForm: React.FC = () => {
             placeholder="Password"
             required
             mt="md"
+            autoComplete="current-password"
             onChange={(e) => setFormData((prev) => ({ ...prev, password: e.target.value }))}
             onKeyDown={handleKeyDown}
             onFocus={() => setFormStatus({ isValid: null, message: '' })}

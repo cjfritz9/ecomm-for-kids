@@ -1,11 +1,13 @@
-import React from 'react'
+import Products from '@/components/Products/Products';
+import ProductsProvider from '@/context/ProductsProvider';
+import React from 'react';
 
-const ProductsPage: React.FC = () => {
+const ProductsPage: React.FC = async () => {
   return (
-    <div>
-      
-    </div>
+    <ProductsProvider>
+      <Products />
+    </ProductsProvider>
   );
-}
+};
 
 export default ProductsPage;

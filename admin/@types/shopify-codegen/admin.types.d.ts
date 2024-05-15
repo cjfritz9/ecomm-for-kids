@@ -31599,6 +31599,9 @@ export type PricingValue = MoneyV2 | PricingPercentageValue;
  *
  * An application can create a maximum of 10 private metafields per shop resource.
  *
+ * Private metafields are deprecated. Metafields created using a reserved namespace are private by default. See our guide for
+ * [migrating private metafields](https://shopify.dev/docs/apps/custom-data/metafields/migrate-private-metafields).
+ *
  */
 export type PrivateMetafield = Node & {
   __typename?: 'PrivateMetafield';
@@ -41286,7 +41289,10 @@ export type ShopFeatures = {
   bundles: BundlesFeature;
   /** Whether a shop's online store can have CAPTCHA protection. */
   captcha: Scalars['Boolean']['output'];
-  /** Whether a shop's online store can have CAPTCHA protection for domains not managed by Shopify. */
+  /**
+   * Whether a shop's online store can have CAPTCHA protection for domains not managed by Shopify.
+   * @deprecated No longer required for external domains
+   */
   captchaExternalDomains: Scalars['Boolean']['output'];
   /**
    * Whether the delivery profiles functionality is enabled for this shop.

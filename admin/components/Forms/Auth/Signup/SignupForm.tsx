@@ -72,6 +72,7 @@ const SignupForm: React.FC = () => {
           label="Email"
           placeholder="Email"
           required
+          autoComplete="email"
           onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
           onFocus={() => setFormStatus({ isValid: null, message: '' })}
         />

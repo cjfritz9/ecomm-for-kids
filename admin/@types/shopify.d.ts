@@ -18,3 +18,17 @@ export interface OrderData {
   status: string;
   totalPrice: string;
 }
+
+export interface CollectionProduct {
+  title: string;
+  priceRangeV2: {
+    min: string;
+    max: string;
+  }
+  status: string;
+  totalInventory: number;
+  featuredImage: {
+    url: string;
+    altText: string;
+  }
+}
