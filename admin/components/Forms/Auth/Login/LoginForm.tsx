@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Box,
   Button,
@@ -20,19 +20,22 @@ import { FormStatus } from '@/@types/auth';
 import { validateLogin } from '@/lib/utils/auth';
 import { loginUser, registerUser } from '@/app/api/requests/auth';
 import { useRouter } from 'next/navigation';
+import { AuthContext } from '@/context/AuthProvider';
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [formStatus, setFormStatus] = useState<FormStatus>({ isValid: null, message: '' });
+  const { setIsLoggedIn, setToken } = useContext(AuthContext);
 
   const router = useRouter();
 
   const handleSubmit = async () => {
     const result = await loginUser({ email: formData.email, password: formData.password });
-
+    console.log(result)
     if (result && result.status === 'ok') {
       setFormStatus({ isValid: true, message: 'Success' });
-
+      setIsLoggedIn(true);
+      setToken(result.data.token);
       setTimeout(() => {
         router.push('/dashboard');
       }, 1000);

@@ -2,7 +2,9 @@ import prisma from '@/prisma/client';
 import { Prisma } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { UserCredentials } from '@/@types/auth';
+import { cookies } from 'next/headers';
 
 export const POST = async (req: NextRequest) => {
   const body = (await req.json()) as UserCredentials;
@@ -16,7 +18,7 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    const user = await prisma.user.findUnique({
+    let user = await prisma.user.findUnique({
       where: {
         email,
       },
@@ -38,8 +40,39 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
+    if (!user.activeStoreId) {
+      const store = await prisma.store.findFirst({
+        where: {
+          ownerId: user.id,
+        },
+      });
+      if (store) {
+        user = await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            activeStoreId: store.id,
+          },
+        });
+      }
+    }
+
+    const token = jwt.sign(
+      { userId: user.id, storeId: user.activeStoreId },
+      process.env.JWT_SECRET!,
+      {
+        expiresIn: '30d',
+      }
+    );
+    cookies().set('accessToken', token);
+
     return NextResponse.json(
-      { status: 'ok', message: 'Successfully logged in', data: { id: user.id, email } },
+      {
+        status: 'ok',
+        message: 'Successfully logged in',
+        data: { id: user.id, email, token: jwt.verify(token, process.env.JWT_SECRET!) },
+      },
       { status: 201 }
     );
   } catch (error) {

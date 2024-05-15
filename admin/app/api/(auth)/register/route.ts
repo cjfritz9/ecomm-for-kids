@@ -29,7 +29,7 @@ export const POST = async (req: NextRequest) => {
       const store = await prisma.store.create({
         data: {
           name: 'My Store',
-          handle: `default-store-${user.id}-${new Date().toDateString()}`,
+          handle: `default-store-${user.id}-${new Date().getMilliseconds()}`,
           createdAt: new Date(),
           ownerId: user.id,
         },
@@ -40,7 +40,20 @@ export const POST = async (req: NextRequest) => {
           expiresIn: '30d',
         });
         cookies().set('accessToken', token);
-        return new APIResponse('ok', 201, `${email} created`, { id: user.id }).asNextResponse();
+        prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            activeStoreId: store.id,
+          },
+        });
+
+        return new APIResponse('ok', 201, `${email} created`, {
+          id: user.id,
+          email,
+          token,
+        }).asNextResponse();
       }
     } else {
       prisma.user.delete({

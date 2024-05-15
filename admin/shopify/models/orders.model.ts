@@ -5,7 +5,6 @@ import { formatShopifyDraftOrders } from '@/app/api/utils';
 import { OrderData } from '@/@types/shopify';
 
 export const createDraftOrder = async ({ email, lineItems, storeId }: OrderCreateFields) => {
-  console.log(email, lineItems, storeId);
   try {
     const data = `
       #graphql
