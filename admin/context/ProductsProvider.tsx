@@ -8,10 +8,10 @@ const baseContext: ProductsProperties = {
   products: null,
   setProducts: (products) => undefined,
   pageInfo: {
-    hasNext: false,
-    hasPrev: false,
-    nextCursor: null,
-    prevCursor: null,
+    hasNextPage: false,
+    hasPrevPage: false,
+    endCursor: null,
+    startCursor: null,
   },
   setPageInfo: (pageInfo) => undefined,
 };

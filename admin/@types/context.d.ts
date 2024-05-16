@@ -18,10 +18,10 @@ export interface ProductsProperties {
   products: CollectionProduct[] | null;
   setProducts: React.Dispatch<React.SetStateAction<AuthContext['products']>>;
   pageInfo: {
-    hasNext: boolean | null;
-    hasPrev: boolean | null;
-    nextCursor: string | null;
-    prevCursor: string | null;
+    hasNextPage: boolean | null;
+    hasPrevPage: boolean | null;
+    endCursor: string | null;
+    startCursor: string | null;
   };
   setPageInfo: React.Dispatch<React.SetStateAction<AuthContext['pageInfo']>>;
 }
