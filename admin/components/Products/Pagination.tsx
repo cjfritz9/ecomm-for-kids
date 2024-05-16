@@ -22,8 +22,9 @@ const ProductsPagination: React.FC = () => {
 
   const handleNext = () => {
     setCurrentPage((prev) => prev + 1);
-    
   };
+
+  console.log(pageInfo);
 
   return (
     <Pagination.Root
@@ -32,11 +33,12 @@ const ProductsPagination: React.FC = () => {
       onPreviousPage={handlePrevious}
       onNextPage={handleNext}
       disabled={lockButtons}
+      size="xl"
     >
       <Flex>
         <PaginationPrevious />
         <PaginationControl>{currentPage}</PaginationControl>
-        <PaginationNext />
+        <PaginationNext disabled={pageInfo.hasNext !== null && pageInfo.hasNext === false} />
       </Flex>
     </Pagination.Root>
   );

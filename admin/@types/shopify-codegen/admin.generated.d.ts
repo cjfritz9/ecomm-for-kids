@@ -13,6 +13,28 @@ export type GetCollectionByIdQuery = { collection?: AdminTypes.Maybe<{ products:
         & { priceRangeV2: { minVariantPrice: Pick<AdminTypes.MoneyV2, 'amount'>, maxVariantPrice: Pick<AdminTypes.MoneyV2, 'amount'> }, variantsCount?: AdminTypes.Maybe<Pick<AdminTypes.Count, 'count' | 'precision'>>, featuredImage?: AdminTypes.Maybe<Pick<AdminTypes.Image, 'url' | 'altText'>> }
       )>, pageInfo: Pick<AdminTypes.PageInfo, 'startCursor' | 'endCursor' | 'hasNextPage' | 'hasPreviousPage'> } }> };
 
+export type GetCollectionNextPageQueryVariables = AdminTypes.Exact<{
+  id: AdminTypes.Scalars['ID']['input'];
+  cursor: AdminTypes.Scalars['String']['input'];
+}>;
+
+
+export type GetCollectionNextPageQuery = { collection?: AdminTypes.Maybe<{ products: { nodes: Array<(
+        Pick<AdminTypes.Product, 'id' | 'title' | 'status' | 'totalInventory'>
+        & { priceRangeV2: { minVariantPrice: Pick<AdminTypes.MoneyV2, 'amount'>, maxVariantPrice: Pick<AdminTypes.MoneyV2, 'amount'> }, variantsCount?: AdminTypes.Maybe<Pick<AdminTypes.Count, 'count' | 'precision'>>, featuredImage?: AdminTypes.Maybe<Pick<AdminTypes.Image, 'url' | 'altText'>> }
+      )>, pageInfo: Pick<AdminTypes.PageInfo, 'startCursor' | 'endCursor' | 'hasNextPage' | 'hasPreviousPage'> } }> };
+
+export type GetCollectionPrevPageQueryVariables = AdminTypes.Exact<{
+  id: AdminTypes.Scalars['ID']['input'];
+  cursor: AdminTypes.Scalars['String']['input'];
+}>;
+
+
+export type GetCollectionPrevPageQuery = { collection?: AdminTypes.Maybe<{ products: { nodes: Array<(
+        Pick<AdminTypes.Product, 'id' | 'title' | 'status' | 'totalInventory'>
+        & { priceRangeV2: { minVariantPrice: Pick<AdminTypes.MoneyV2, 'amount'>, maxVariantPrice: Pick<AdminTypes.MoneyV2, 'amount'> }, variantsCount?: AdminTypes.Maybe<Pick<AdminTypes.Count, 'count' | 'precision'>>, featuredImage?: AdminTypes.Maybe<Pick<AdminTypes.Image, 'url' | 'altText'>> }
+      )>, pageInfo: Pick<AdminTypes.PageInfo, 'startCursor' | 'endCursor' | 'hasNextPage' | 'hasPreviousPage'> } }> };
+
 export type CreateDraftOrderMutationVariables = AdminTypes.Exact<{
   email: AdminTypes.Scalars['String']['input'];
   lineItems?: AdminTypes.InputMaybe<Array<AdminTypes.DraftOrderLineItemInput> | AdminTypes.DraftOrderLineItemInput>;
@@ -35,6 +57,8 @@ export type GetOrdersByStoreIdQuery = { draftOrders: { nodes: Array<(
 
 interface GeneratedQueryTypes {
   "\n      #graphql\n      query getCollectionById ($id: ID!) {\n        collection(id: $id) {\n          products(first: 20) {\n            nodes {\n              id\n              title\n              status\n              priceRangeV2 {\n                minVariantPrice {\n                  amount\n                }\n                maxVariantPrice {\n                  amount\n                }\n              }\n              variantsCount {\n                count\n                precision\n              }\n              totalInventory\n              featuredImage {\n                url\n                altText\n              }\n            }\n            pageInfo {\n              startCursor\n              endCursor\n              hasNextPage\n              hasPreviousPage\n            }\n          }\n        }\n      }\n    ": {return: GetCollectionByIdQuery, variables: GetCollectionByIdQueryVariables},
+  "\n      #graphql\n      query getCollectionNextPage ($id: ID!, $cursor: String!) {\n        collection(id: $id) {\n          products(first: 20, after: $cursor) {\n            nodes {\n              id\n              title\n              status\n              priceRangeV2 {\n                minVariantPrice {\n                  amount\n                }\n                maxVariantPrice {\n                  amount\n                }\n              }\n              variantsCount {\n                count\n                precision\n              }\n              totalInventory\n              featuredImage {\n                url\n                altText\n              }\n            }\n            pageInfo {\n              startCursor\n              endCursor\n              hasNextPage\n              hasPreviousPage\n            }\n          }\n        }\n      }\n    ": {return: GetCollectionNextPageQuery, variables: GetCollectionNextPageQueryVariables},
+  "\n      #graphql\n      query getCollectionPrevPage ($id: ID!, $cursor: String!) {\n        collection(id: $id) {\n          products(first: 20, before: $cursor) {\n            nodes {\n              id\n              title\n              status\n              priceRangeV2 {\n                minVariantPrice {\n                  amount\n                }\n                maxVariantPrice {\n                  amount\n                }\n              }\n              variantsCount {\n                count\n                precision\n              }\n              totalInventory\n              featuredImage {\n                url\n                altText\n              }\n            }\n            pageInfo {\n              startCursor\n              endCursor\n              hasNextPage\n              hasPreviousPage\n            }\n          }\n        }\n      }\n    ": {return: GetCollectionPrevPageQuery, variables: GetCollectionPrevPageQueryVariables},
   "\n    #graphql\n    query getOrdersByStoreId($searchQuery: String!) {\n      draftOrders(first: 15, query: $searchQuery) {\n        nodes {\n          orderId: id\n          orderNumber: name\n          createdAt\n          customer: customer {\n            displayName\n          }\n          status\n          totalPrice\n        }\n      }\n    }\n  ": {return: GetOrdersByStoreIdQuery, variables: GetOrdersByStoreIdQueryVariables},
 }
 
