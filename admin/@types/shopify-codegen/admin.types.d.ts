@@ -15005,13 +15005,16 @@ export type ErrorsWebPixelUserError = DisplayableError & {
 export enum ErrorsWebPixelUserErrorCode {
   /** The input value is blank. */
   Blank = 'BLANK',
-  /** The provided settings ID does not match the expected settings definition on the app. */
+  /** The provided settings does not match the expected settings definition on the app. */
   InvalidSettings = 'INVALID_SETTINGS',
   /** The record with the ID used as the input value couldn't be found. */
   NotFound = 'NOT_FOUND',
   /** The input value is already taken. */
   Taken = 'TAKEN',
-  /** An error occurred and the web pixel couldnt be deleted. */
+  /**
+   * An error occurred and the web pixel couldnt be deleted.
+   * @deprecated `UNABLE_TO_DELETE` is deprecated. Use `UNEXPECTED_ERROR` instead.
+   */
   UnableToDelete = 'UNABLE_TO_DELETE'
 }
 

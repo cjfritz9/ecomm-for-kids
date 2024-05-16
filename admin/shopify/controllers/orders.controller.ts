@@ -4,6 +4,7 @@ import { APIResponse } from '@/app/api/response';
 import { NextRequest, NextResponse } from 'next/server';
 import { createDraftOrder, getOrdersByStoreId } from '../models/orders.model';
 import { NextUrlWithParsedQuery } from 'next/dist/server/request-meta';
+import { createNewCustomer, getCustomerByEmail } from '../models/customers.model';
 
 export const postDraftOrder = async (req: NextRequest) => {
   const body = (await req.json()) as OrderCreateFields;
@@ -22,6 +23,12 @@ export const postDraftOrder = async (req: NextRequest) => {
         email,
         lineItems,
       }).asNextResponse();
+    }
+
+    let customer = await getCustomerByEmail(email);
+
+    if (!customer) {
+      
     }
 
     const order = await createDraftOrder({ storeId, lineItems, email });

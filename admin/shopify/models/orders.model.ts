@@ -8,12 +8,12 @@ export const createDraftOrder = async ({ email, lineItems, storeId }: OrderCreat
   try {
     const data = `
       #graphql
-      mutation createDraftOrder($email: String!, $lineItems: [DraftOrderLineItemInput!], $storeId: String!) {
+      mutation createDraftOrder($email: String!, $lineItems: [DraftOrderLineItemInput!], $storeId: String!, $storeTag: String!) {
         draftOrderCreate(
           input: {
             email: $email, 
             lineItems: $lineItems,
-            tags: [$storeId] ,
+            tags: [$storeTag] ,
             customAttributes: [
               {
                 key: "child_store_id",
@@ -38,6 +38,7 @@ export const createDraftOrder = async ({ email, lineItems, storeId }: OrderCreat
         email,
         lineItems,
         storeId,
+        storeTag: `child_store_id:${storeId}`,
       },
       retries: 2,
     });
