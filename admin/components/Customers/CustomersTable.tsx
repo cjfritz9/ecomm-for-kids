@@ -14,8 +14,9 @@ import {
   Box,
 } from '@mantine/core';
 import { IconSelector, IconChevronDown, IconChevronUp, IconSearch } from '@tabler/icons-react';
+import { MdVerified } from "react-icons/md";
 import classes from './CustomersTable.module.css';
-import { RowData } from '@/@types/orders';
+import { RowData } from '@/@types/customers';
 
 interface Props {
   data: RowData[];
@@ -26,12 +27,13 @@ interface ThProps {
   reversed: boolean;
   sorted: boolean;
   onSort(): void;
+  setWidth?: number;
 }
 
-function Th({ children, reversed, sorted, onSort }: ThProps) {
+function Th({ children, reversed, sorted, onSort, setWidth }: ThProps) {
   const Icon = sorted ? (reversed ? IconChevronUp : IconChevronDown) : IconSelector;
   return (
-    <Table.Th className={classes.th}>
+    <Table.Th className={classes.th} style={setWidth ? { width: setWidth} : {}}>
       <UnstyledButton onClick={onSort} className={classes.control}>
         <Group justify="space-between">
           <Text fw={500} fz="sm">
@@ -94,13 +96,13 @@ const CustomersTable: React.FC<Props> = ({ data }) => {
     setSortedData(sortData(data, { sortBy, reversed: reverseSortDirection, search: value }));
   };
 
-  const rows = sortedData.map((row) => (
-    <Table.Tr key={row.orderId}>
-      <Table.Td>{row.orderNumber}</Table.Td>
+  const rows = sortedData.map((row, i) => (
+    <Table.Tr key={i}>
+      <Table.Td>{row.displayName}</Table.Td>
       <Table.Td>{row.createdAt}</Table.Td>
-      <Table.Td>{row.customer}</Table.Td>
-      <Table.Td>{row.status}</Table.Td>
-      <Table.Td>${row.totalPrice}</Table.Td>
+      <Table.Td>{row.numberOfOrders}</Table.Td>
+      <Table.Td>{row.subscriptionState}</Table.Td>
+      <Table.Td>{row.verifiedEmail ? <MdVerified size={20} color='var(--mantine-primary-color-filled)' /> : null}</Table.Td>
     </Table.Tr>
   ));
 
@@ -125,39 +127,40 @@ const CustomersTable: React.FC<Props> = ({ data }) => {
             <Table.Tbody>
               <Table.Tr bg="gray.1">
                 <Th
-                  sorted={sortBy === 'orderNumber'}
+                  sorted={sortBy === 'displayName'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('orderNumber')}
+                  onSort={() => setSorting('displayName')}
                 >
-                  Order Number
+                  Display Name
                 </Th>
                 <Th
                   sorted={sortBy === 'createdAt'}
                   reversed={reverseSortDirection}
                   onSort={() => setSorting('createdAt')}
                 >
-                  Date
+                  Date Joined
                 </Th>
                 <Th
-                  sorted={sortBy === 'customer'}
+                  sorted={sortBy === 'numberOfOrders'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('customer')}
+                  onSort={() => setSorting('numberOfOrders')}
                 >
-                  Customer
+                  Total Orders
                 </Th>
                 <Th
-                  sorted={sortBy === 'status'}
+                  sorted={sortBy === 'subscriptionState'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('status')}
+                  onSort={() => setSorting('subscriptionState')}
                 >
-                  Status
+                  Subscription Status
                 </Th>
                 <Th
-                  sorted={sortBy === 'totalPrice'}
+                  sorted={sortBy === 'verifiedEmail'}
                   reversed={reverseSortDirection}
-                  onSort={() => setSorting('totalPrice')}
+                  onSort={() => setSorting('verifiedEmail')}
+                  setWidth={160}
                 >
-                  Total
+                  Verified Email
                 </Th>
               </Table.Tr>
             </Table.Tbody>

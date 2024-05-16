@@ -1,5 +1,6 @@
 import logger from '@/app/api/logger';
 import adminClient from '../clients/admin-client';
+import { formatShopifyCustomers } from '@/app/api/utils';
 
 export const getCustomerByEmail = async (email: string) => {
   try {
@@ -72,8 +73,8 @@ export const getCustomersByStoreId = async (storeId: string) => {
       retries: 2,
     });
 
-    if (res?.data?.customers.nodes) {
-      return res.data.customers.nodes;
+    if (res?.data?.customers?.nodes) {
+      return formatShopifyCustomers(res.data.customers);
     } else {
       logger.error(`
       ${JSON.stringify(res)}

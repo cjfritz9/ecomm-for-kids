@@ -1,5 +1,8 @@
 import { OrderData } from '@/@types/shopify';
-import { GetCollectionByIdQuery } from '@/@types/shopify-codegen/admin.generated';
+import {
+  GetCollectionByIdQuery,
+  GetCustomersByStoreIdQuery,
+} from '@/@types/shopify-codegen/admin.generated';
 import logger from './logger';
 import prisma from '@/prisma/client';
 
@@ -21,6 +24,17 @@ export const formatShopifyCollection = (collection: GetCollectionByIdQuery['coll
       },
     })),
     pageInfo: collection!.products.pageInfo,
+  };
+};
+
+export const formatShopifyCustomers = (customers: GetCustomersByStoreIdQuery['customers']) => {
+  return {
+    customers: customers.nodes.map((customer) => ({
+      ...customer,
+    createdAt: new Date(customer.createdAt).toLocaleDateString('en'),
+    subscriptionState: customer.emailMarketingConsent?.marketingState,
+    })),
+    pageInfo: customers.pageInfo,
   };
 };
 

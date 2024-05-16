@@ -64,7 +64,7 @@ export const fetchCustomersByStoreId = async (
       return new APIResponse('error', 500, 'Error getting customers', null).asNextResponse();
     }
 
-    return new APIResponse('ok', 201, 'Customers found', { customers }).asNextResponse();
+    return new APIResponse('ok', 201, 'Customers found', customers).asNextResponse();
   } catch (error) {
     logger.error(`
       ${error}
