@@ -10,6 +10,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import StoreProvider from '@/context/StoreProvider';
 import { getServerSideStoreData } from './api/utils';
+import { getUserTokenData } from '@/lib/utils/cookies';
 
 export const metadata: Metadata = {
   title: {
@@ -20,15 +21,11 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: any }) {
-  const token = cookies().get('accessToken');
-  let decoded: any = null;
+  const token = getUserTokenData();
   let storeData: any;
-  if (token) {
-    decoded = jwt.verify(token.value, process.env.JWT_SECRET!);
-  }
 
-  if (decoded) {
-    const storeDataRes = await getServerSideStoreData(decoded.userId);
+  if (token) {
+    const storeDataRes = await getServerSideStoreData(token.userId);
     if (storeDataRes) {
       storeData = storeDataRes;
     }
@@ -46,7 +43,7 @@ export default async function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme}>
-          <AuthProvider token={decoded}>
+          <AuthProvider token={token}>
             <StoreProvider storeDataServer={storeData}>
               <Header />
               {children}

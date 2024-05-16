@@ -71,8 +71,6 @@ export const POST = async (req: NextRequest) => {
     );
     cookies().set('accessToken', token);
 
-    console.log(store)
-
     return NextResponse.json(
       {
         status: 'ok',

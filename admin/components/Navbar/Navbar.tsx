@@ -39,8 +39,6 @@ const Navbar: React.FC = () => {
 
     const result = await res.json();
 
-    console.log(result);
-
     router.push('/login');
   };
 

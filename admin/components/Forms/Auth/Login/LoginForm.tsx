@@ -37,7 +37,6 @@ const LoginForm: React.FC = () => {
       setFormStatus({ isValid: true, message: 'Success' });
       setIsLoggedIn(true);
       setToken(result.data.token);
-      console.log(result.data.store)
       setName(result.data.store.name)
       setStoreId(result.data.store.id)
       setCollectionId(result.data.store.collectionId)

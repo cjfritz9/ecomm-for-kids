@@ -17,4 +17,11 @@ export interface ValidationResult {
   uiMessage: string;
 }
 
+export interface UserToken {
+  userId: string;
+  storeId: string;
+  iat: number;
+  exp: number;
+}
+
 export type UserCredentials = LoginFormFields;

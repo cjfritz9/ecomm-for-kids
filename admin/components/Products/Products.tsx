@@ -2,47 +2,63 @@
 
 import { ProductsContext } from '@/context/ProductsProvider';
 import { StoreContext } from '@/context/StoreProvider';
-import { Flex } from '@mantine/core';
+import { Flex, Stack } from '@mantine/core';
 import React, { useContext, useEffect } from 'react';
 import ProductCard from './Cards/ProductCard';
 import LoadingCard from './Cards/LoadingCard';
+import { getCollectionById } from '@/shopify/models/collection.model';
+import ProductsPagination from './Pagination';
 
-const Products: React.FC = () => {
+interface Props {
+  initialProductsData: Awaited<ReturnType<typeof getCollectionById>>;
+}
+
+const Products: React.FC<Props> = ({ initialProductsData }) => {
   const { products, setProducts, setPageInfo } = useContext(ProductsContext);
   const { collectionId } = useContext(StoreContext);
 
   useEffect(() => {
-    if (!collectionId) return;
-    (async () => {
-      if (!products) {
-        const res = await fetch(`/api/shopify/collection/${collectionId}`);
-        const collection = await res.json();
-        console.log(collection);
-        if (collection?.data?.products) {
-          setProducts(collection.data.products);
+    if (initialProductsData) {
+      setProducts(initialProductsData.products);
+      setPageInfo(initialProductsData.pageInfo);
+    } else {
+      if (!collectionId) return;
+      (async () => {
+        if (!products) {
+          const res = await fetch(`/api/shopify/collection/${collectionId}`);
+          const collection = await res.json();
+          if (collection?.data?.products) {
+            setProducts(collection.data.products);
+          }
+          if (collection?.data?.pageInfo) {
+            setPageInfo(collection.data.pageInfo);
+          }
         }
-        if (collection?.data?.pageInfo) {
-          setPageInfo(collection.data.pageInfo);
-        }
-      }
-    })();
+      })();
+    }
   }, [collectionId]);
 
-  return <Flex style={{ flexWrap: 'wrap', gap: '1.25rem', padding: '2rem' }}>
-    {products ? products[0] && products.map((product: any) => (
-      <ProductCard
-        key={product.id}
-        title={product.title}
-        status={product.status}
-        priceRange={product.priceRangeV2}
-        variantsCount={product.variantsCount}
-        totalInventory={product.totalInventory}
-        image={product.featuredImage}
-      />
-    )) : Array.from(Array(10)).map((_, i) => (
-      <LoadingCard key={i} />
-    ))}
-  </Flex>;
+  return (
+    <Stack p="xl">
+      <Flex style={{ flexWrap: 'wrap', gap: '1.25rem' }}>
+        {products
+          ? products[0] &&
+            products.map((product: any) => (
+              <ProductCard
+                key={product.id}
+                title={product.title}
+                status={product.status}
+                priceRange={product.priceRangeV2}
+                variantsCount={product.variantsCount}
+                totalInventory={product.totalInventory}
+                image={product.featuredImage}
+              />
+            ))
+          : Array.from(Array(10)).map((_, i) => <LoadingCard key={i} />)}
+      </Flex>
+      <ProductsPagination />
+    </Stack>
+  );
 };
 
 export default Products;

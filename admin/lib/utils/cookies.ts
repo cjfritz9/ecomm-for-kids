@@ -1,3 +1,7 @@
+import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
+import { UserToken } from '@/@types/auth';
+
 export const getCookie = (key: string) => {
   let cookieValue = '';
   if (document.cookie && document.cookie !== '') {
@@ -11,4 +15,15 @@ export const getCookie = (key: string) => {
     }
   }
   return cookieValue;
+};
+/**
+ * Server Only - Uses JWT
+ */
+export const getUserTokenData = () => {
+  const token = cookies().get('accessToken');
+  let decoded = null;
+  if (token) {
+    decoded = jwt.verify(token.value, process.env.JWT_SECRET!) as UserToken;
+  }
+  return decoded;
 };

@@ -57,9 +57,8 @@ export const getCollectionById = async (id: string) => {
       ${JSON.stringify(res)}
       source: getCollectionById()
     `);
+    return null;
     }
-
-    return res;
   } catch (error) {
     logger.error(`
       ${error}
