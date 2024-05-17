@@ -15,11 +15,9 @@ const CustomersPage: React.FC = async () => {
   const res = await fetch(`http://localhost:3000/api/shopify/customers/store/${token.storeId}`);
   const result = await res.json();
 
-  console.log('ssr fetch', result)
-
   return (
     <Box p="sm" style={{ overflowY: 'scroll' }}>
-      <Title>Orders</Title>
+      <Title>Customers</Title>
       <CustomersTable data={result.data.customers} />
     </Box>
   );

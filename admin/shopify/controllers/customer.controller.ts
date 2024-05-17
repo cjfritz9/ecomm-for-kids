@@ -19,8 +19,6 @@ export const postNewCustomer = async (req: NextRequest) => {
 
     const customer = await createNewCustomer(email, storeId);
 
-    console.log(customer);
-
     if (!customer) {
       logger.error(`
         Error creating customer

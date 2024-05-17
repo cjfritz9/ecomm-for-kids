@@ -33,11 +33,9 @@ const Navbar: React.FC = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    const res = await fetch('/api/logout', {
-      method: 'POST'
+    await fetch('/api/logout', {
+      method: 'POST',
     });
-
-    const result = await res.json();
 
     router.push('/login');
   };
@@ -49,6 +47,7 @@ const Navbar: React.FC = () => {
       href={'/dashboard' + item.link}
       key={item.label}
       onClick={() => setActive(item.label)}
+      prefetch={false}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
       <span className={classes.linkLabel}>{item.label}</span>

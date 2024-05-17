@@ -131,7 +131,7 @@ const CustomersTable: React.FC<Props> = ({ data }) => {
                   reversed={reverseSortDirection}
                   onSort={() => setSorting('displayName')}
                 >
-                  Display Name
+                  Customer
                 </Th>
                 <Th
                   sorted={sortBy === 'createdAt'}
