@@ -4,7 +4,7 @@ import React from 'react'
 const AnalyticsPage: React.FC = async () => {
   return (
     <Stack w='100%' p='sm'>
-      <Title>Analytics</Title>
+      <Title>Stats</Title>
     </Stack>
   );
 }
