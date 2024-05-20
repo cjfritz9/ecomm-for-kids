@@ -17,12 +17,12 @@ const Header: React.FC = () => {
         <Text>LOGO</Text>
         {isLoggedIn === true ? (
           <StoresMenu />
-        ) : isLoggedIn === false ? (
+        ) : (
           <Group justify="center" visibleFrom="xs">
             <Button variant="default">Log in</Button>
             <Button>Sign up</Button>
           </Group>
-        ) : null}
+        )}
 
         <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
       </Container>

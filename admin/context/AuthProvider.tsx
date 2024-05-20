@@ -17,8 +17,9 @@ const baseContext: AuthProperties = {
     exp: 0,
   },
   setToken: (token) => undefined,
-  isLoggedIn: null,
+  isLoggedIn: false,
   setIsLoggedIn: (bool) => undefined,
+  reset: () => undefined,
 };
 
 export const AuthContext = React.createContext<AuthProperties>(baseContext);
@@ -36,6 +37,12 @@ const AuthProvider: React.FC<Props> = ({ token: existingToken, children }) => {
     }
   }, []);
 
+  const reset = () => {
+    setEmail(baseContext.email);
+    setToken(baseContext.token);
+    setIsLoggedIn(baseContext.isLoggedIn);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -45,6 +52,7 @@ const AuthProvider: React.FC<Props> = ({ token: existingToken, children }) => {
         setToken,
         isLoggedIn,
         setIsLoggedIn,
+        reset,
       }}
     >
       {children}

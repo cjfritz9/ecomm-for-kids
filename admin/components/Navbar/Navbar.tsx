@@ -16,6 +16,7 @@ import {
 import classes from './Navbar.module.css';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import LogoutButton from './LogoutButton';
 
 const defaultLinks = [
   { link: '/', label: 'Home', icon: IconHome },
@@ -26,22 +27,18 @@ const defaultLinks = [
 
 const advancedLinks = [
   { link: '/stats', label: 'Stats', icon: IconGraph },
-  { link: '/customize', label: 'Customize', icon: IconPaint },
   { link: '/marketing', label: 'Marketing', icon: IconClick },
+  { link: '/customize', label: 'Customize', icon: IconPaint },
 ];
 
 const Navbar: React.FC = () => {
   const [active, setActive] = useState('');
-  const [accordionValue, setAccordionValue] = useState('')
+  const [accordionValue, setAccordionValue] = useState('');
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleLogout = async () => {
-    await fetch('/api/logout', {
-      method: 'POST',
-    });
-
-    router.push('/login');
+  const handleAdvancedClick = () => {
+    setAccordionValue((prev) => (prev === '' ? 'advanced' : ''));
   };
 
   const links = defaultLinks.map((item) => (
@@ -82,6 +79,14 @@ const Navbar: React.FC = () => {
         }
       });
     }
+
+    if (
+      pathname.includes('stats') ||
+      pathname.includes('customize') ||
+      pathname.includes('marketing')
+    ) {
+      setAccordionValue('advanced');
+    }
   }, [pathname]);
 
   return (
@@ -89,9 +94,17 @@ const Navbar: React.FC = () => {
       <nav className={classes.navbar}>
         <div className={classes.navbarMain}>
           {links}
-          <Accordion defaultValue="" styles={{ root: { marginTop: '1rem'}, item: {border: '0px'}, content: {padding: 0}}}>
+          <Accordion
+            value={accordionValue}
+            defaultValue=""
+            styles={{
+              root: { marginTop: '1rem' },
+              item: { border: '0px' },
+              content: { padding: 0 },
+            }}
+          >
             <Accordion.Item value="advanced">
-              <Accordion.Control>Advanced</Accordion.Control>
+              <Accordion.Control onClick={handleAdvancedClick}>Advanced</Accordion.Control>
               <Accordion.Panel>{advLinks}</Accordion.Panel>
             </Accordion.Item>
           </Accordion>
@@ -103,10 +116,7 @@ const Navbar: React.FC = () => {
             <span className={classes.linkLabel}>Settings</span>
           </a>
 
-          <a href="#" className={classes.link} onClick={handleLogout}>
-            <IconLogout className={classes.linkIcon} stroke={1.5} />
-            <span className={classes.linkLabel}>Logout</span>
-          </a>
+          <LogoutButton />
         </div>
       </nav>
     </Container>

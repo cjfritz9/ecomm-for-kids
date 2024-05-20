@@ -10,8 +10,9 @@ export interface AuthProperties {
     exp: number;
   };
   setToken: React.Dispatch<React.SetStateAction<AuthContext['token']>>;
-  isLoggedIn: boolean | null;
+  isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<AuthContext['isLoggedIn']>>;
+  reset: () => void;
 }
 
 export interface ProductsProperties {
