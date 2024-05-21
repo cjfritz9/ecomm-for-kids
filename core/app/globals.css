@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .clip-right {
+    clip-path: inset-right(0%);
+    animation: inset-right 1s ease-in;
+  }
+
+  @keyframes inset-right {
+    0% {
+      clip-path: inset(0 100% 0 0);
+    }
+    100% {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  .clip-left {
+    clip-path: inset-left(0%);
+    animation: inset-left 1s ease-in;
+  }
+
+  @keyframes inset-left {
+    0% {
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%, 100% 53%);
+    }
+    33% {
+      clip-path: polygon(72% 29%, 100% 0, 100% 100%, 59% 100%, 64% 66%);
+    }
+
+    66% {
+      clip-path: polygon(56% 0, 100% 0, 100% 100%, 52% 100%, 54% 38%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 54%);
+    }
+  }
+
+}

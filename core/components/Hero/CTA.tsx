@@ -20,7 +20,7 @@ const CTA: React.FC = () => {
         how to earn even more!
       </p>
       <Link href='/create-your-store' className='w-fit'>
-        <Button extraStyles={['w-fit']}>Get Started</Button>
+        <Button extraStyles={['w-fit', 'mt-6']}>Get Started</Button>
       </Link>
     </div>
   );

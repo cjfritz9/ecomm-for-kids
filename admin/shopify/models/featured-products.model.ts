@@ -12,12 +12,13 @@ export const getFeaturedProducts = async () => {
             references(first: 4) {
                nodes {
                 ... on Product {
-                title
-                featuredImage {
-                  url
-                  altText
-                }
-                description
+                  id
+                  title
+                  featuredImage {
+                    url
+                    altText
+                  }
+                  description
                 }
               }
             }

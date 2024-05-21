@@ -1,11 +1,13 @@
 import React from 'react';
 import Subtitle from '../UI/Subtitle';
 import ProductsPreview from '../ProductsPreview/ProductsPreview';
+import AnimatedArrows from './AnimatedArrows';
 
 const IdeaCenter: React.FC = () => {
   return (
     <>
-      <div className='text-center max-w-[742px]'>
+      <div className='text-center max-w-[742px] mb-[88px]'>
+        <AnimatedArrows />
         <Subtitle content='IDEA CENTER' level={3} extraStyles='mb-4' />
         <h2 className='font-bold text-[56px] leading-[64px] mb-6'>
           Where your ideas can come to life
