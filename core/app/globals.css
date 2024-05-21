@@ -4,7 +4,6 @@
 
 @layer utilities {
   .clip-right {
-    clip-path: inset-right(0%);
     animation: inset-right 1s ease-in;
   }
 
@@ -18,7 +17,6 @@
   }
 
   .clip-left {
-    clip-path: inset-left(0%);
     animation: inset-left 1s ease-in;
   }
 

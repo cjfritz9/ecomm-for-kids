@@ -12,10 +12,12 @@ import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import IdeaCenter from '@/components/IdeaCenter/IdeaCenter';
 import Ankle from '@/components/Footer.tsx/Ankle';
 import Footer from '@/components/Footer.tsx/Footer';
+import SlimHeader from '@/components/Header/SlimHeader';
 
 export default function Home() {
   return (
     <main className='flex flex-col items-center w-full overflow-x-clip'>
+      <SlimHeader />
       <div className='bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
         <Header />
         <section className='flex relative flex-col items-center px-20 justify-center w-full pt-[36px]'>

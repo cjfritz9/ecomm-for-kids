@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
         height={40}
         alt='KidCorp Logo'
       />
-      <p className='text-white'>©2024 KidCorp. All rights reserved.</p>
+      <p className='text-white text-sm leading-[18px]'>©2024 KidCorp. All rights reserved.</p>
     </div>
   );
 };
