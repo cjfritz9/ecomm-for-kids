@@ -72,22 +72,30 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div
-      className={`p-6 px-16 text-center gap-4 -mx-4 -my-[1px] flex flex-col items-center transition-all duration-500 ${
+      className={`p-6 px-16 text-center gap-4 -mx-4 -my-[1px] flex flex-col items-center transition-all duration-300 ${
         active ? 'bg-white rounded-[22px]' : `bg-transparent ${borders}`
-        }`}
+      }`}
       onMouseEnter={handleHover}
     >
       <div
-        className={`rounded-full w-16 flex items-center justify-center h-16 p-2${
+        className={`rounded-full w-16 flex items-center justify-center h-16 border-white border p-2${
           active ? ' bg-primary' : ' bg-transparent'
         }`}
       >
         <p className='text-3xl text-white font-bold'>{number}</p>
       </div>
-      <p className={`text-2xl font-bold${active ? ' text-secondary' : ' text-white'}`}>
+      <p
+        className={`text-2xl font-bold${
+          active ? ' text-secondary' : ' text-white'
+        }`}
+      >
         {title}
       </p>
-      <p className={`text-lg max-w-[290px] font-[500]${active ? '' : ' text-white'}`}>
+      <p
+        className={`text-lg max-w-[290px] font-[500]${
+          active ? '' : ' text-white'
+        }`}
+      >
         {body}
       </p>
     </div>
