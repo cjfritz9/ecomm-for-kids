@@ -33,6 +33,8 @@ export const postDraftOrder = async (req: NextRequest) => {
 
     if (customer) {
       await updateExistingCustomer(customer.id, storeId);
+    } else {
+      await createNewCustomer(email, storeId);
     }
 
     const order = await createDraftOrder({ storeId, lineItems, email });
