@@ -10,6 +10,8 @@ import avatarLearnWhileMakingMoney from '@/public/assets/learn-while-making-mone
 import yellowEyebrow from '@/public/assets/eyebrow-yellow.svg';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
 import IdeaCenter from '@/components/IdeaCenter/IdeaCenter';
+import Ankle from '@/components/Footer.tsx/Ankle';
+import Footer from '@/components/Footer.tsx/Footer';
 
 export default function Home() {
   return (
@@ -80,6 +82,10 @@ export default function Home() {
           title='Learn about business while earning money'
           body="We want you to have fun while you learn. You'll learn how to run an online store, but it won't feel like school at all! It's like playing a game where you get to be the boss and get paid!"
         />
+      </section>
+      <section className='w-full'>
+        <Ankle />
+        <Footer />
       </section>
     </main>
   );
