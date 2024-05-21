@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import jwt from 'jsonwebtoken';
 import Header from '@/components/Header/Header';
 import AuthProvider from '@/context/AuthProvider';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import StoreProvider from '@/context/StoreProvider';
 import { getServerSideStoreData } from './api/utils';

@@ -16,8 +16,8 @@ export default function Home() {
     <main className='flex flex-col items-center w-full overflow-x-clip'>
       <div className='bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
         <Header />
-        <section className='flex relative flex-col items-center px-20 justify-center w-full -mt-7'>
-          <div className='flex items-center max-w-[1512px] w-full justify-between'>
+        <section className='flex relative flex-col items-center px-20 justify-center w-full pt-[36px]'>
+          <div className='flex items-center max-w-[1512px] w-full justify-between pb-[120px]'>
             <CTA />
             <HeroImage />
             <Image
@@ -32,7 +32,7 @@ export default function Home() {
               height={321}
               width={347}
               alt='dotted arrow'
-              className='absolute right-0 -top-24'
+              className='absolute right-0 bottom-0'
             />
           </div>
           <div
@@ -44,6 +44,9 @@ export default function Home() {
           />
         </section>
       </div>
+      <section className='flex bg-accent relative flex-col items-center px-20 justify-center w-full py-[112px]'>
+        <HowItWorks />
+      </section>
       <section className='flex relative flex-col items-center px-20 justify-center w-full my-14'>
         <TextWithImage
           image={
@@ -75,10 +78,6 @@ export default function Home() {
           title="Let's open your own online store"
           body="With the power of KidCorp's online store creator, you can make your very own e-commerce website! It's like having your own shop, but on the internet. You get to decide what you want to sell and make it all yours with the help of a grown-up."
         />
-      </section>
-      <section className='flex bg-accent relative flex-col items-center px-20 justify-center w-full py-[112px]'>
-        <HowItWorks />
-
       </section>
     </main>
   );

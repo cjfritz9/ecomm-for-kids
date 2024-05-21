@@ -19,6 +19,7 @@ const SignupPage: React.FC = () => {
   if (token) {
     decoded = jwt.verify(token.value, process.env.JWT_SECRET!);
   }
+  console.log(decoded)
   if (decoded) {
     redirect('/dashboard')
   }

@@ -15,12 +15,12 @@ const Header: React.FC = () => {
           alt='KidCorp Logo'
         />
         <div className='flex w-[336px] justify-between'>
-          <Link href='https://admin.kidcorp.com/login'>
+          <Link href='http://localhost:3001/login'>
             <button className='btn btn-ghost h-[60px] font-[600] text-lg px-8 py-4'>
               Login
             </button>
           </Link>
-          <Link href='https://admin.kidcorp.com/signup'>
+          <Link href='http://localhost:3001/signup'>
             <Button>Create account</Button>
           </Link>
         </div>

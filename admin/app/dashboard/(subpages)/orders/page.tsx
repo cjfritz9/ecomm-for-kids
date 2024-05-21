@@ -14,7 +14,7 @@ const OrdersPage: React.FC = async () => {
     userId: string;
     storeId: string;
   };
-  const res = await fetch(`http://localhost:3000/api/shopify/orders/store/${decoded.storeId}`);
+  const res = await fetch(`http://localhost:3001/api/shopify/orders/store/${decoded.storeId}`);
   const orders = await res.json();
   return (
     <Box p="sm" style={{ overflowY: 'scroll' }}>
