@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import React from 'react';
 import { redirect } from 'next/navigation';
+import config from '@/lib/utils/config';
 
 const OrdersPage: React.FC = async () => {
   const token = cookies().get('accessToken');
@@ -14,7 +15,7 @@ const OrdersPage: React.FC = async () => {
     userId: string;
     storeId: string;
   };
-  const res = await fetch(`http://localhost:3001/api/shopify/orders/store/${decoded.storeId}`);
+  const res = await fetch(`${config.baseUrl}/shopify/orders/store/${decoded.storeId}`);
   const orders = await res.json();
   return (
     <Box p="sm" style={{ overflowY: 'scroll' }}>

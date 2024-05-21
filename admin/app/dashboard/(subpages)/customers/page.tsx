@@ -6,13 +6,14 @@ import React from 'react';
 import { redirect } from 'next/navigation';
 import CustomersTable from '@/components/Customers/CustomersTable';
 import { getUserTokenData } from '@/lib/utils/cookies';
+import config from '@/lib/utils/config';
 
 const CustomersPage: React.FC = async () => {
   const token = getUserTokenData();
   if (!token) {
     redirect('/login');
   }
-  const res = await fetch(`http://localhost:3001/api/shopify/customers/store/${token.storeId}`);
+  const res = await fetch(`${config.baseUrl}/shopify/customers/store/${token.storeId}`);
   const result = await res.json();
 
   return (
