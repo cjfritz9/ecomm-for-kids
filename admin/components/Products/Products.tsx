@@ -2,12 +2,13 @@
 
 import { ProductsContext } from '@/context/ProductsProvider';
 import { StoreContext } from '@/context/StoreProvider';
-import { Flex, Stack } from '@mantine/core';
+import { Alert, Flex, Stack, Text } from '@mantine/core';
 import React, { useContext, useEffect } from 'react';
 import ProductCard from './Cards/ProductCard';
 import LoadingCard from './Cards/LoadingCard';
 import { getCollectionById } from '@/shopify/models/collection.model';
 import ProductsPagination from './Pagination';
+import { IconInfoCircle } from '@tabler/icons-react';
 
 interface Props {
   initialProductsData: Awaited<ReturnType<typeof getCollectionById>>;
@@ -40,6 +41,11 @@ const Products: React.FC<Props> = ({ initialProductsData }) => {
 
   return (
     <Stack p="xl">
+      <Alert variant="light" title="Coming soon" color="blue" icon={<IconInfoCircle />}>
+        The interface will be cleaned up and each product will be clickable to view/edit its
+        information
+      </Alert>
+
       <Flex style={{ flexWrap: 'wrap', gap: '1.25rem' }}>
         {products
           ? products[0] &&
