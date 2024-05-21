@@ -2,6 +2,8 @@ import { getFeaturedProducts } from '@/lib/requests';
 import Image from 'next/image';
 import React from 'react';
 
+export const revalidate = 0;
+
 const ProductsPreview: React.FC = async () => {
   const products = await getFeaturedProducts();
 
