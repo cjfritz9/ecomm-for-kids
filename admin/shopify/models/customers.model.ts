@@ -10,7 +10,6 @@ export const getCustomerByEmail = async (email: string) => {
         customers(first: 1, query:$query) {
           nodes {
             id
-            displayName
           }
         }
       }
@@ -138,6 +137,57 @@ export const createNewCustomer = async (email: string, storeId: string) => {
     logger.error(`
       ${error}
       source: createNewCustomer()
+    `);
+    return null;
+  }
+};
+
+export const updateExistingCustomer = async (id: string, storeId: string) => {
+  try {
+    const data = `
+      #graphql
+      mutation updateExistingCustomer ($id: ID!, $storeTag: String!) {
+        customerUpdate(input:{ id: $id, tags: [$storeTag]}) {
+          customer {
+            id
+          }
+          userErrors {
+            field
+            message
+          }
+        }
+      }
+    `;
+
+    const res = await adminClient.request(data, {
+      variables: {
+        id,
+        storeTag: `child_store_id:${storeId}`,
+      },
+      retries: 2,
+    });
+
+    if (res?.data?.customerUpdate?.userErrors?.length) {
+      res.data.customerUpdate.userErrors.map((error) => {
+        logger.error(`${error.field}: ${error.message}`);
+      });
+      logger.error('source: createDraftOrder()');
+      return null;
+    }
+
+    if (res?.data?.customerUpdate?.customer) {
+      return res.data.customerUpdate.customer;
+    } else {
+      logger.error(`
+      ${JSON.stringify(res)}
+      source: updateExistingCustomer()
+    `);
+      return null;
+    }
+  } catch (error) {
+    logger.error(`
+      ${error}
+      source: updateExistingCustomer()
     `);
     return null;
   }
