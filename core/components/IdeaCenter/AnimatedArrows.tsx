@@ -8,7 +8,7 @@ import arrow4 from '@/public/assets/arrow-4.svg';
 
 const AnimatedArrows: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { margin: "200px"});
+  const isInView = useInView(containerRef, { margin: "100px 0px -200px 0px"});
 
   return (
     <div ref={containerRef}>
