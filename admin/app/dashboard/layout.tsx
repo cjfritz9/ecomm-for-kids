@@ -5,16 +5,16 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 const DashboardLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  const headersList = headers();
-  const referer = headersList.get('referer');
-  console.log(headersList.entries())
+  // const headersList = headers();
+  // const referer = headersList.get('referer');
+  // console.log(headersList.entries())
 
   
-  console.log({ referer });
-  if (referer !== null && !referer.includes('localhost:3001')) {
-    console.log('in redirect', referer)
-    redirect('/confirm-login');
-  }
+  // console.log({ referer });
+  // if (referer !== null && !referer.includes('localhost:3001')) {
+  //   console.log('in redirect', referer)
+  //   redirect('/confirm-login');
+  // }
 
   return (
     <Box display="flex">
