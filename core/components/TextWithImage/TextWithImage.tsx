@@ -2,7 +2,7 @@ import React from 'react';
 
 interface Props {
   image: React.JSX.Element;
-  imageBg: React.JSX.Element;
+  imageBg?: React.JSX.Element;
   eyebrow: React.JSX.Element;
   title: string;
   body: string;
@@ -11,7 +11,7 @@ interface Props {
 
 const TextWithImage: React.FC<Props> = ({
   image,
-  imageBg,
+  imageBg = null,
   eyebrow,
   title,
   body,

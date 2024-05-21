@@ -6,10 +6,10 @@ import TextWithImage from '@/components/TextWithImage/TextWithImage';
 
 import arrow1 from '@/public/assets/arrow-1.svg';
 import arrow2 from '@/public/assets/arrow-2.svg';
-import avatarGetStarted from '@/public/assets/avatar-get-started.svg';
-import avatarGetStartedBg from '@/public/assets/avatar-get-started-bg.svg';
-import getStartedEyebrow from '@/public/assets/get-started-eyebrow.svg';
+import avatarLearnWhileMakingMoney from '@/public/assets/learn-while-making-money-avatar.svg';
+import yellowEyebrow from '@/public/assets/eyebrow-yellow.svg';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
+import IdeaCenter from '@/components/IdeaCenter/IdeaCenter';
 
 export default function Home() {
   return (
@@ -47,36 +47,38 @@ export default function Home() {
       <section className='flex bg-accent relative flex-col items-center px-20 justify-center w-full py-[112px]'>
         <HowItWorks />
       </section>
-      <section className='flex relative flex-col items-center px-20 justify-center w-full my-14'>
+      <section className='flex relative flex-col items-center px-20 justify-center w-full py-[112px]'>
+        <IdeaCenter />
+      </section>
+      <section className='flex relative flex-col items-center px-20 justify-center p-14 pt-0 bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
+        <div
+          className='w-[100dvw] h-[15px] mb-14 -mt-[1px]'
+          style={{
+            backgroundImage: 'url("/assets/wave-reversed.svg")',
+            backgroundRepeat: 'repeat-x'
+          }}
+        />
         <TextWithImage
+          reversed
           image={
             <Image
-              src={avatarGetStarted.src}
+              src={avatarLearnWhileMakingMoney.src}
               height={554}
               width={554}
               alt='Avatar with shirts and coins'
               className='z-[1] relative'
             />
           }
-          imageBg={
-            <Image
-              src={avatarGetStartedBg.src}
-              height={472}
-              width={472}
-              alt='Gradient behind avatar'
-              className='absolute bottom-10'
-            />
-          }
           eyebrow={
             <Image
-              src={getStartedEyebrow.src}
+              src={yellowEyebrow.src}
               height={16.7}
               width={120}
               alt='Wavy accent element'
             />
           }
-          title="Let's open your own online store"
-          body="With the power of KidCorp's online store creator, you can make your very own e-commerce website! It's like having your own shop, but on the internet. You get to decide what you want to sell and make it all yours with the help of a grown-up."
+          title='Learn about business while earning money'
+          body="We want you to have fun while you learn. You'll learn how to run an online store, but it won't feel like school at all! It's like playing a game where you get to be the boss and get paid!"
         />
       </section>
     </main>

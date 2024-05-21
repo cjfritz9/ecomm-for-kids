@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React, { useState } from 'react';
-import eyebrow from '@/public/assets/how-it-works-eyebrow.svg';
+import eyebrow from '@/public/assets/eyebrow-yellow.svg';
 
 const HowItWorks: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);

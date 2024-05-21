@@ -2,6 +2,7 @@ import { OrderData } from '@/@types/shopify';
 import {
   GetCollectionByIdQuery,
   GetCustomersByStoreIdQuery,
+  GetFeaturedProductsQuery,
 } from '@/@types/shopify-codegen/admin.generated';
 import logger from './logger';
 import prisma from '@/prisma/client';
@@ -37,6 +38,10 @@ export const formatShopifyCustomers = (customers: GetCustomersByStoreIdQuery['cu
     pageInfo: customers.pageInfo,
   };
 };
+
+export const formatFeaturedProducts = (data: GetFeaturedProductsQuery['metaobjectByHandle']) => {
+  return data?.fields[0]?.references?.nodes ?? null;
+}
 
 export const getServerSideStoreData = async (userId: string) => {
   try {

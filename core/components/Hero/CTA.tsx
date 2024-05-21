@@ -1,13 +1,12 @@
 import React from 'react';
 import Button from '../Button/Button';
 import Link from 'next/link';
+import Subtitle from '../UI/Subtitle';
 
 const CTA: React.FC = () => {
   return (
     <div className='flex flex-col max-w-[668px] gap-4'>
-      <h1 className='text-primary font-semibold tracking-widest text-2xl leading-9'>
-        LEARN & EARN ONLINE
-      </h1>
+      <Subtitle content='LEARN & EARN ONLINE' level={1} />
       <h2 className='font-[700] text-[88px] leading-[96px] text-wrap'>
         Be the boss of your own KidCorp!
       </h2>
@@ -21,7 +20,7 @@ const CTA: React.FC = () => {
         how to earn even more!
       </p>
       <Link href='/create-your-store' className='w-fit'>
-      <Button extraStyles={['w-fit']}>Get Started</Button>
+        <Button extraStyles={['w-fit']}>Get Started</Button>
       </Link>
     </div>
   );

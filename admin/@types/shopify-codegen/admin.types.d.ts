@@ -37622,7 +37622,7 @@ export type ProductVariant = HasMetafieldDefinitions & HasMetafields & HasPublis
    * @deprecated
    * The [relationship between a product variant and a fulfillment service was changed in the `2022-07` API version](/changelog/fulfillment-service-sku-sharing). A [ProductVariant](/api/admin-graphql/latest/objects/ProductVariant) can be stocked by multiple fulfillment services. As a result, we recommend that you use the [inventoryItem field](/api/admin-graphql/latest/objects/ProductVariant#field-productvariant-inventoryitem) if you need to determine where a product variant is stocked.
    *
-   * If you need to determine whether a product is a gift card, then you should continue to use this field until an alternative is available.
+   * If you need to determine whether a product is a gift card, then you should use `product.isGiftCard`.
    *
    * Learn more about [managing inventory quantities and states](/apps/fulfillment/inventory-management-apps/quantities-states).
    *
@@ -37637,7 +37637,7 @@ export type ProductVariant = HasMetafieldDefinitions & HasMetafields & HasPublis
   fulfillmentServiceEditable: EditableProperty;
   /**
    * The Harmonized System Code (or HS Tariff Code) for the variant.
-   * @deprecated Use `InventoryItem.harmonizedSystemCode` instead.
+   * @deprecated Use `inventoryItem.harmonizedSystemCode` instead.
    */
   harmonizedSystemCode?: Maybe<Scalars['String']['output']>;
   /** A globally-unique ID. */
@@ -37648,7 +37648,7 @@ export type ProductVariant = HasMetafieldDefinitions & HasMetafields & HasPublis
   inventoryItem: InventoryItem;
   /**
    * The fulfillment service that tracks the number of items in stock for the product variant.
-   * @deprecated Use tracked attribute on `inventoryItem` instead.
+   * @deprecated Use `inventoryItem.tracked` instead.
    */
   inventoryManagement: ProductVariantInventoryManagement;
   /** Whether customers are allowed to place an order for the product variant when it's out of stock. */
@@ -37705,7 +37705,7 @@ export type ProductVariant = HasMetafieldDefinitions & HasMetafields & HasPublis
   /**
    * Whether a customer needs to provide a shipping address when placing an order for the product variant.
    *
-   * @deprecated Use `InventoryItem.requiresShipping` instead.
+   * @deprecated Use `inventoryItem.requiresShipping` instead.
    */
   requiresShipping: Scalars['Boolean']['output'];
   /** List of product options applied to the variant. */
@@ -37755,13 +37755,13 @@ export type ProductVariant = HasMetafieldDefinitions & HasMetafields & HasPublis
   updatedAt: Scalars['DateTime']['output'];
   /**
    * The weight of the product variant in the unit system specified with weight_unit.
-   * @deprecated Use InventoryItem.measurement.weight instead
+   * @deprecated Use `inventoryItem.measurement.weight.value` instead
    */
   weight?: Maybe<Scalars['Float']['output']>;
   /**
    * The unit of measurement that applies to the product variant's weight. If you don't specify a value for weight_unit, then the shop's default unit of measurement is applied. Valid values: `g`, `kg`, `oz`, `lb`.
    *
-   * @deprecated Use InventoryItem.measurement.weight instead
+   * @deprecated Use `inventoryItem.measurement.weight.unit` instead
    */
   weightUnit: WeightUnit;
 };
@@ -38072,8 +38072,6 @@ export type ProductVariantInput = {
    *
    */
   requiresComponents?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The SKU for the variant. Case-sensitive string. */
-  sku?: InputMaybe<Scalars['String']['input']>;
   /** The tax code associated with the variant. */
   taxCode?: InputMaybe<Scalars['String']['input']>;
   /** Whether the variant is taxable. */
@@ -38253,8 +38251,6 @@ export type ProductVariantSetInput = {
   barcode?: InputMaybe<Scalars['String']['input']>;
   /** The compare-at price of the variant. */
   compareAtPrice?: InputMaybe<Scalars['Money']['input']>;
-  /** The Harmonized System code (or HS Tariff code) for the variant. */
-  harmonizedSystemCode?: InputMaybe<Scalars['String']['input']>;
   /** Specifies the product variant to update or create a new variant if absent. */
   id?: InputMaybe<Scalars['ID']['input']>;
   /** Whether customers are allowed to place an order for the product variant when it's out of stock. */
@@ -38282,18 +38278,12 @@ export type ProductVariantSetInput = {
    *
    */
   requiresComponents?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether the variant requires shipping. */
-  requiresShipping?: InputMaybe<Scalars['Boolean']['input']>;
   /** The SKU for the variant. Case-sensitive string. */
   sku?: InputMaybe<Scalars['String']['input']>;
   /** The tax code associated with the variant. */
   taxCode?: InputMaybe<Scalars['String']['input']>;
   /** Whether the variant is taxable. */
   taxable?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The weight of the variant. */
-  weight?: InputMaybe<Scalars['Float']['input']>;
-  /** The unit of weight that's used to measure the variant. */
-  weightUnit?: InputMaybe<WeightUnit>;
 };
 
 /** The set of valid sort keys for the ProductVariant query. */
@@ -38467,8 +38457,6 @@ export type ProductVariantsBulkInput = {
   optionValues?: InputMaybe<Array<VariantOptionValueInput>>;
   /** The price of the variant. */
   price?: InputMaybe<Scalars['Money']['input']>;
-  /** The SKU for the variant. */
-  sku?: InputMaybe<Scalars['String']['input']>;
   /** The tax code associated with the variant. */
   taxCode?: InputMaybe<Scalars['String']['input']>;
   /** Whether the variant is taxable. */
