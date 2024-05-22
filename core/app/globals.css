@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  ::selection {
+    background: #1B9CA4;
+    color: white;
+  }
+}
+
 @layer utilities {
   .clip-right {
     animation: inset-right 1s ease-in;
