@@ -1,6 +1,6 @@
 'use client';
 
-import { BRAND } from '@/lib/config';
+import { BRAND } from '@/lib/utils/config';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';

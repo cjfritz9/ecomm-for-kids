@@ -1,18 +1,41 @@
-import { getFeaturedProducts } from '@/lib/requests';
+'use client';
+
+import { motion, stagger, useAnimate, useInView } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export const revalidate = 0;
+interface Props {
+  products: any;
+}
 
-const ProductsPreview: React.FC = async () => {
-  const products = await getFeaturedProducts();
+const ProductsPreview: React.FC<Props> = ({ products }) => {
+  const [scope, animate] = useAnimate();
+  const inView = useInView(scope, {margin: "0px 0px -200px 0px"})
+
+  useEffect(() => {
+    if (inView) {
+
+      animate(
+        'span',
+        {
+          opacity: 1,
+          x: '24px'
+        },
+        {
+          duration: 1,
+          delay: stagger(0.5)
+        }
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scope.current]);
 
   if (!products || !Array.isArray(products)) {
     return <Error />;
   }
 
   return (
-    <div className='flex flex-wrap gap-4 max-w-[1352px]'>
+    <div ref={scope} className='flex flex-wrap gap-4 max-w-[1352px]'>
       {products.map((product, i) => (
         <ProductCard key={product.id} data={product} index={i} />
       ))}
@@ -37,27 +60,29 @@ const ProductCard: React.FC<CardProps> = ({ data, index }) => {
   const { title, description, featuredImage } = data;
   const isSmall = index === 1 || index === 2;
   return (
-    <div
-      className={`h-[334px] group relative overflow-clip p-6 rounded-3xl bg-gradient-to-r from-base-200 from-50% to-transparent ${
-        isSmall ? 'w-[43%]' : 'w-[55%]'
-      }`}
-    >
+    <span className={`-translate-x-6 opacity-0 h-fit ${
+      isSmall ? 'w-[43%]' : 'w-[55%]'
+    }`}>
       <div
-        className={`bg-white rounded-3xl p-6 ${
-          isSmall ? 'w-[307px]' : 'w-[436px]'
-        }`}
+        className={`h-[334px] group relative overflow-clip p-6 rounded-3xl bg-gradient-to-r from-base-200 from-50% to-transparent`}
       >
-        <p className='text-secondary font-bold text-2xl mb-2'>{title}</p>
-        <p className='font-[500] text-lg'>{description}</p>
-        <Image
-          src={featuredImage.url}
-          width={344}
-          height={344}
-          alt={featuredImage.altText ?? ''}
-          className='-z-[1] absolute right-0 top-0 group-hover:scale-110 transition-transform duration-300'
-        />
+        <div
+          className={`bg-white rounded-3xl p-6 ${
+            isSmall ? 'w-[307px]' : 'w-[436px]'
+          }`}
+        >
+          <p className='text-secondary font-bold text-2xl mb-2'>{title}</p>
+          <p className='font-[500] text-lg'>{description}</p>
+          <Image
+            src={featuredImage.url}
+            width={344}
+            height={344}
+            alt={featuredImage.altText ?? ''}
+            className='-z-[1] absolute mix-blend-multiply right-0 top-0 group-hover:scale-110 transition-transform duration-300'
+          />
+        </div>
       </div>
-    </div>
+    </span>
   );
 };
 

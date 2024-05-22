@@ -4,17 +4,110 @@
 
 @layer base {
   ::selection {
-    background: #1B9CA4;
+    background: #1b9ca4;
     color: white;
   }
 }
 
 @layer utilities {
-  .clip-right {
-    animation: inset-right 1s ease-in;
+  .fade-in {
+    animation: 1s ease 2.5s normal forwards 1 fade-in;
+    opacity: 0;
   }
 
-  @keyframes inset-right {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .fade-in-ltr {
+    animation: fade-in-ltr 1s;
+  }
+
+  @keyframes fade-in-ltr {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px)
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0px)
+    }
+  }
+
+  .fade-in-ttb {
+    animation: 1s ease 2s normal forwards 1 fade-in-ttb;
+    opacity: 0;
+  }
+
+  @keyframes fade-in-ttb {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px)
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0px)
+    }
+  }
+
+  .arrow-draw-in-1 {
+    animation: draw-in-1 2s linear;
+  }
+
+  @keyframes draw-in-1 {
+    0% {
+      clip-path: inset(100% 0 0 0);
+    }
+    11% {
+      clip-path: inset(89% 0 0 0);
+    }
+    26% {
+      clip-path: inset(74% 0 0 0);
+    }
+    40% {
+      clip-path: inset(60% 0 0 0);
+    }
+    55% {
+      clip-path: polygon(0 100%, 100% 100%, 100% 16%, 0 56%, 0 38%);
+    }
+    75% {
+      clip-path: polygon(0 100%, 100% 100%, 100% 12%, 0 12%, 0 35%);
+    }
+    85% {
+      clip-path: polygon(17% 0, 26% 14%, 100% 0, 100% 100%, 0 100%, 0 0);
+    }
+    90% {
+      clip-path: polygon(29% 0, 35% 11%, 100% 0, 100% 100%, 0 100%, 0 0);
+    }
+    100% {
+      clip-path: polygon(29% 0, 54% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+    }
+  }
+
+  .arrow-draw-in-2 {
+    animation: draw-in-2 2s linear;
+  }
+
+  @keyframes draw-in-2 {
+    0% {
+      clip-path: inset(100% 0 0 0);
+    }
+    100% {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  .arrow-draw-in-3 {
+    animation: draw-in-3 1s ease-in;
+  }
+
+  @keyframes draw-in-3 {
     0% {
       clip-path: inset(0 100% 0 0);
     }
@@ -23,11 +116,11 @@
     }
   }
 
-  .clip-left {
-    animation: inset-left 1s ease-in;
+  .arrow-draw-in-4 {
+    animation: draw-in-4 1s ease-in;
   }
 
-  @keyframes inset-left {
+  @keyframes draw-in-4 {
     0% {
       clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%, 100% 53%);
     }
@@ -42,5 +135,4 @@
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 54%);
     }
   }
-
 }

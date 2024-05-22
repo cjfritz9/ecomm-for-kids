@@ -13,8 +13,13 @@ import IdeaCenter from '@/components/IdeaCenter/IdeaCenter';
 import Ankle from '@/components/Footer.tsx/Ankle';
 import Footer from '@/components/Footer.tsx/Footer';
 import SlimHeader from '@/components/Header/SlimHeader';
+import { getFeaturedProducts } from '@/lib/utils/requests';
 
-export default function Home() {
+export const revalidate = 3600;
+
+export default async function Home() {
+  const products = await getFeaturedProducts();
+
   return (
     <main className='flex flex-col items-center w-full overflow-x-clip'>
       <SlimHeader />
@@ -29,14 +34,14 @@ export default function Home() {
               height={318}
               width={185}
               alt='dotted arrow'
-              className='absolute bottom-4 left-0'
+              className='absolute bottom-4 left-0 arrow-draw-in-1'
             />
             <Image
               src={arrow2.src}
               height={321}
               width={347}
               alt='dotted arrow'
-              className='absolute right-0 bottom-0'
+              className='absolute right-0 bottom-0 arrow-draw-in-2'
             />
           </div>
           <div
@@ -52,7 +57,7 @@ export default function Home() {
         <HowItWorks />
       </section>
       <section className='flex relative flex-col items-center px-20 justify-center w-full py-[112px]'>
-        <IdeaCenter />
+        <IdeaCenter products={products} />
       </section>
       <section className='flex relative flex-col items-center px-20 justify-center p-14 pt-0 bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
         <div

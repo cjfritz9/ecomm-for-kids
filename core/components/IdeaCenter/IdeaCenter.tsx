@@ -3,7 +3,11 @@ import Subtitle from '../UI/Subtitle';
 import ProductsPreview from '../ProductsPreview/ProductsPreview';
 import AnimatedArrows from './AnimatedArrows';
 
-const IdeaCenter: React.FC = () => {
+interface Props {
+  products: any;
+}
+
+const IdeaCenter: React.FC<Props> = ({ products }) => {
   return (
     <>
       <div className='text-center max-w-[742px] mb-[88px]'>
@@ -19,7 +23,7 @@ const IdeaCenter: React.FC = () => {
           others would like!
         </p>
       </div>
-      <ProductsPreview />
+      <ProductsPreview products={products} />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BRAND } from '@/lib/config';
+import { BRAND } from '@/lib/utils/config';
 import Image from 'next/image';
 
 const Footer: React.FC = () => {
