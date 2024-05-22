@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    unoptimized: true,
+
     remotePatterns: [toRemotePattern(process.env.CMS_IMAGE_PATTERN)]
   }
 };
