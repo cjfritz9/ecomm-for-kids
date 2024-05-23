@@ -34,35 +34,24 @@ export default async function Home() {
               height={321}
               width={347}
               alt='dotted arrow'
-              className='absolute right-0 -top-48'
+              className='absolute right-0 -top-48 pointer-events-none'
             />
-            {/* <Image
-              src={arrow1.src}
-              height={318}
-              width={185}
-              alt='dotted arrow'
-              className='absolute bottom-4 left-0 arrow-draw-in-1'
-            /> */}
           </div>
         </section>
-          <section className='flex relative flex-col items-center px-20 justify-center w-full' style={{ background: 'linear-gradient(to bottom, transparent 60%, #E98476 60%);'}}>
-            <StorePreview />
-          </section>
+        <section
+          className='flex relative flex-col items-center px-20 justify-center w-full'
+          style={{
+            background:
+              'linear-gradient(to bottom, transparent 60%, #E98476 60%);'
+          }}
+        >
+          <StorePreview />
+        </section>
       </div>
       <section className='flex bg-accent relative flex-col items-center px-20 justify-center w-full py-[112px]'>
         <HowItWorks />
       </section>
-      <section className='flex relative flex-col items-center px-20 justify-center w-full py-[112px]'>
-        <IdeaCenter products={products} />
-      </section>
-      <section className='flex relative flex-col items-center px-20 justify-center p-14 pt-0 bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
-        <div
-          className='w-[100dvw] h-[15px] mb-14 -mt-[1px]'
-          style={{
-            backgroundImage: 'url("/assets/wave-reversed.svg")',
-            backgroundRepeat: 'repeat-x'
-          }}
-        />
+      <section className='flex relative flex-col items-center px-20 justify-center pt-14 pb-0 bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
         <TextWithImage
           reversed
           image={
@@ -85,6 +74,16 @@ export default async function Home() {
           title='Learn about business while earning money'
           body="We want you to have fun while you learn. You'll learn how to run an online store, but it won't feel like school at all! It's like playing a game where you get to be the boss and get paid!"
         />
+        <div
+          className='w-[100dvw] h-[15px]'
+          style={{
+            backgroundImage: 'url("/assets/wave-break.svg")',
+            backgroundRepeat: 'repeat-x'
+          }}
+        />
+      </section>
+      <section className='flex relative flex-col items-center px-20 justify-center w-full py-[112px]'>
+        <IdeaCenter products={products} />
       </section>
       <section className='w-full'>
         <Ankle />

@@ -17,7 +17,7 @@ const AnimatedArrow: React.FC = () => {
         height={185.1}
         width={284}
         alt='arrow for effect'
-        className={`absolute left-0${
+        className={`absolute left-0 pointer-events-none${
           isInView ? ' arrow-draw-in-2' : ' hidden'
         }`}
       />

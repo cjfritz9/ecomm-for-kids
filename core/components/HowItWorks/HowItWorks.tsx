@@ -3,6 +3,14 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import eyebrow from '@/public/assets/eyebrow-yellow.svg';
+import num1 from '@/public/assets/how-it-works-numbers/how-1.svg';
+import num2 from '@/public/assets/how-it-works-numbers/how-2.svg';
+import num3 from '@/public/assets/how-it-works-numbers/how-3.svg';
+import num4 from '@/public/assets/how-it-works-numbers/how-4.svg';
+import num1Active from '@/public/assets/how-it-works-numbers/how-1-active.svg';
+import num2Active from '@/public/assets/how-it-works-numbers/how-2-active.svg';
+import num3Active from '@/public/assets/how-it-works-numbers/how-3-active.svg';
+import num4Active from '@/public/assets/how-it-works-numbers/how-4-active.svg';
 
 const HowItWorks: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -19,7 +27,8 @@ const HowItWorks: React.FC = () => {
         <Card
           active={activeIndex === 0}
           borders={activeIndex - 1 !== 0 ? 'border-r' : ''}
-          number={1}
+          numberSrc={num1.src}
+          activeNumberSrc={num1Active.src}
           title='Sign up'
           body='First, create an account. You will use this to log in when you visit.'
           handleHover={() => setActiveIndex(0)}
@@ -27,7 +36,8 @@ const HowItWorks: React.FC = () => {
         <Card
           active={activeIndex === 1}
           borders={activeIndex !== 1 && activeIndex !== 2 ? 'border-r' : ''}
-          number={2}
+          numberSrc={num2.src}
+          activeNumberSrc={num2Active.src}
           title='Answer questions'
           body='Next, we will guide you through customizing your store. '
           handleHover={() => setActiveIndex(1)}
@@ -35,7 +45,8 @@ const HowItWorks: React.FC = () => {
         <Card
           active={activeIndex === 2}
           borders={activeIndex !== 2 && activeIndex !== 3 ? 'border-r' : ''}
-          number={3}
+          numberSrc={num3.src}
+          activeNumberSrc={num3Active.src}
           title='Choose products'
           body='Choose what you want to sell from our cool list of ideas.'
           handleHover={() => setActiveIndex(2)}
@@ -43,7 +54,8 @@ const HowItWorks: React.FC = () => {
         <Card
           active={activeIndex === 3}
           borders=''
-          number={4}
+          numberSrc={num4.src}
+          activeNumberSrc={num4Active.src}
           title='Start selling'
           body='Finally, publish your products to your store so you can start earning!'
           handleHover={() => setActiveIndex(3)}
@@ -55,7 +67,8 @@ const HowItWorks: React.FC = () => {
 
 interface CardProps {
   active: boolean;
-  number: number;
+  numberSrc: string;
+  activeNumberSrc: string;
   title: string;
   body: string;
   borders: string;
@@ -65,7 +78,8 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({
   active,
   borders,
-  number,
+  numberSrc,
+  activeNumberSrc,
   title,
   body,
   handleHover
@@ -77,13 +91,12 @@ const Card: React.FC<CardProps> = ({
       }`}
       onMouseEnter={handleHover}
     >
-      <div
-        className={`rounded-full w-16 flex items-center justify-center h-16 border-white border p-2${
-          active ? ' bg-primary' : ' bg-transparent'
-        }`}
-      >
-        <p className='text-3xl text-white font-bold'>{number}</p>
-      </div>
+      <Image
+        src={active ? activeNumberSrc : numberSrc}
+        height={72}
+        width={72}
+        alt='section number'
+      />
       <p
         className={`text-2xl font-bold${
           active ? ' text-secondary' : ' text-white'
