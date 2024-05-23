@@ -5,7 +5,6 @@ import HeroImage from '@/components/Hero/HeroImage';
 import TextWithImage from '@/components/TextWithImage/TextWithImage';
 
 import arrow1 from '@/public/assets/arrow-1.svg';
-import arrow2 from '@/public/assets/arrow-2.svg';
 import avatarLearnWhileMakingMoney from '@/public/assets/learn-while-making-money-avatar.svg';
 import yellowEyebrow from '@/public/assets/eyebrow-yellow.svg';
 import HowItWorks from '@/components/HowItWorks/HowItWorks';
@@ -14,6 +13,7 @@ import Ankle from '@/components/Footer.tsx/Ankle';
 import Footer from '@/components/Footer.tsx/Footer';
 import SlimHeader from '@/components/Header/SlimHeader';
 import { getFeaturedProducts } from '@/lib/utils/requests';
+import StorePreview from '@/components/StorePreview.tsx/StorePreview';
 
 export const revalidate = 3600;
 
@@ -31,27 +31,23 @@ export default async function Home() {
             <HeroImage />
             <Image
               src={arrow1.src}
+              height={321}
+              width={347}
+              alt='dotted arrow'
+              className='absolute right-0 -top-48'
+            />
+            {/* <Image
+              src={arrow1.src}
               height={318}
               width={185}
               alt='dotted arrow'
               className='absolute bottom-4 left-0 arrow-draw-in-1'
-            />
-            <Image
-              src={arrow2.src}
-              height={321}
-              width={347}
-              alt='dotted arrow'
-              className='absolute right-0 bottom-0 arrow-draw-in-2'
-            />
+            /> */}
           </div>
-          <div
-            className='w-[100dvw] h-[15px]'
-            style={{
-              backgroundImage: 'url("/assets/hero-wave-border.svg")',
-              backgroundRepeat: 'repeat-x'
-            }}
-          />
         </section>
+          <section className='flex relative flex-col items-center px-20 justify-center w-full' style={{ background: 'linear-gradient(to bottom, transparent 60%, #E98476 60%);'}}>
+            <StorePreview />
+          </section>
       </div>
       <section className='flex bg-accent relative flex-col items-center px-20 justify-center w-full py-[112px]'>
         <HowItWorks />

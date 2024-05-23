@@ -15,7 +15,6 @@ const SlimHeader: React.FC = () => {
   };
 
   const handleScroll = () => {
-    console.log({ 'window.scrollY': window.scrollY });
     if (window.scrollY > 800) {
       setIsVisible(true);
     } else {

@@ -31,12 +31,12 @@
   @keyframes fade-in-ltr {
     0% {
       opacity: 0;
-      transform: translateX(-20px)
+      transform: translateX(-20px);
     }
 
     100% {
       opacity: 1;
-      transform: translateX(0px)
+      transform: translateX(0px);
     }
   }
 
@@ -48,12 +48,12 @@
   @keyframes fade-in-ttb {
     0% {
       opacity: 0;
-      transform: translateY(-20px)
+      transform: translateY(-20px);
     }
 
     100% {
       opacity: 1;
-      transform: translateY(0px)
+      transform: translateY(0px);
     }
   }
 
@@ -65,44 +65,24 @@
     0% {
       clip-path: inset(100% 0 0 0);
     }
-    11% {
-      clip-path: inset(89% 0 0 0);
-    }
-    26% {
-      clip-path: inset(74% 0 0 0);
-    }
-    40% {
-      clip-path: inset(60% 0 0 0);
-    }
-    55% {
-      clip-path: polygon(0 100%, 100% 100%, 100% 16%, 0 56%, 0 38%);
-    }
-    75% {
-      clip-path: polygon(0 100%, 100% 100%, 100% 12%, 0 12%, 0 35%);
-    }
-    85% {
-      clip-path: polygon(17% 0, 26% 14%, 100% 0, 100% 100%, 0 100%, 0 0);
-    }
-    90% {
-      clip-path: polygon(29% 0, 35% 11%, 100% 0, 100% 100%, 0 100%, 0 0);
-    }
     100% {
-      clip-path: polygon(29% 0, 54% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+      clip-path: inset(0 0 0 0);
     }
   }
 
   .arrow-draw-in-2 {
-    animation: draw-in-2 2s linear;
+    animation: draw-in-2 1.25s ease-in;
   }
 
   @keyframes draw-in-2 {
     0% {
-      clip-path: inset(100% 0 0 0);
+      clip-path: inset(0 100% 0 0);
     }
     100% {
       clip-path: inset(0 0 0 0);
     }
   }
+
   .arrow-draw-in-3 {
     animation: draw-in-3 1s ease-in;
   }
