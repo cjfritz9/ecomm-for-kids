@@ -66,7 +66,7 @@ const SignupForm: React.FC = () => {
       w={{ base: '100%', xs: 'fit-content' }}
       style={{ opacity: formStatus.isValid ? 0 : 1, transition: 'opacity 1s ease' }}
     >
-      <Title>SiteName</Title>
+      <Title>KidCorp</Title>
       <Fieldset legend="Sign Up" w={{ base: '100%', xs: '400px' }}>
         <TextInput
           label="Email"
