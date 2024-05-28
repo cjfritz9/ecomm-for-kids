@@ -23,10 +23,10 @@ const HowItWorks: React.FC = () => {
           How it works:
         </h4>
       </div>
-      <div className='flex lg:flex-row flex-col border rounded-3xl'>
+      <div className='flex lg:flex-row flex-col border rounded-3xl overflow-clip'>
         <Card
           active={activeIndex === 0}
-          borders={activeIndex - 1 !== 0 ? 'border-b lg:border-r' : ''}
+          borders={activeIndex - 1 !== 0 ? 'border-b lg:border-r' : 'border-b-none'}
           numberSrc={num1.src}
           activeNumberSrc={num1Active.src}
           title='Sign up'

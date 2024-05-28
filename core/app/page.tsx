@@ -26,7 +26,7 @@ export default async function Home() {
       <div className='bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
         <Header />
         <section className='flex relative flex-col items-center px-8 sm:px-20 justify-center w-full pt-[36px]'>
-          <div className='flex flex-col sm:flex-row items-center max-w-[1512px] w-full justify-between pb-[120px]'>
+          <div className='flex flex-col xl:flex-row items-center max-w-[1512px] w-full justify-between pb-[120px]'>
             <CTA />
             <HeroImage />
             <Image
