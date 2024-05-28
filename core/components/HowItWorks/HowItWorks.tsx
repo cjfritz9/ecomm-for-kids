@@ -19,14 +19,14 @@ const HowItWorks: React.FC = () => {
     <div className='flex flex-col gap-[72px]'>
       <div className='flex flex-col items-center gap-6'>
         <Image src={eyebrow.src} height={16} width={120} alt='Wavy accent' />
-        <h4 className='text-white text-[56px] leading-[64px] font-bold'>
+        <h4 className='text-white text-[44px] sm:text-[56px] sm:leading-[64px] font-bold'>
           How it works:
         </h4>
       </div>
-      <div className='flex border rounded-3xl'>
+      <div className='flex lg:flex-row flex-col border rounded-3xl'>
         <Card
           active={activeIndex === 0}
-          borders={activeIndex - 1 !== 0 ? 'border-r' : ''}
+          borders={activeIndex - 1 !== 0 ? 'border-b lg:border-r' : ''}
           numberSrc={num1.src}
           activeNumberSrc={num1Active.src}
           title='Sign up'
@@ -35,7 +35,7 @@ const HowItWorks: React.FC = () => {
         />
         <Card
           active={activeIndex === 1}
-          borders={activeIndex !== 1 && activeIndex !== 2 ? 'border-r' : ''}
+          borders={activeIndex !== 1 && activeIndex !== 2 ? 'border-b lg:border-r' : ''}
           numberSrc={num2.src}
           activeNumberSrc={num2Active.src}
           title='Answer questions'
@@ -44,7 +44,7 @@ const HowItWorks: React.FC = () => {
         />
         <Card
           active={activeIndex === 2}
-          borders={activeIndex !== 2 && activeIndex !== 3 ? 'border-r' : ''}
+          borders={activeIndex !== 2 && activeIndex !== 3 ? 'border-b lg:border-r' : ''}
           numberSrc={num3.src}
           activeNumberSrc={num3Active.src}
           title='Choose products'
@@ -86,7 +86,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div
-      className={`p-6 px-16 text-center gap-4 -mx-4 -my-[1px] flex flex-col items-center transition-all duration-300 ${
+      className={`p-6 px-16 text-center gap-4 lg:-mx-4 -my-[1px] flex flex-col items-center transition-all duration-300 ${
         active ? 'bg-white rounded-[22px]' : `bg-transparent ${borders}`
       }`}
       onMouseEnter={handleHover}

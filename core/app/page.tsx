@@ -25,8 +25,8 @@ export default async function Home() {
       <SlimHeader />
       <div className='bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
         <Header />
-        <section className='flex relative flex-col items-center px-20 justify-center w-full pt-[36px]'>
-          <div className='flex items-center max-w-[1512px] w-full justify-between pb-[120px]'>
+        <section className='flex relative flex-col items-center px-8 sm:px-20 justify-center w-full pt-[36px]'>
+          <div className='flex flex-col sm:flex-row items-center max-w-[1512px] w-full justify-between pb-[120px]'>
             <CTA />
             <HeroImage />
             <Image
@@ -34,12 +34,12 @@ export default async function Home() {
               height={321}
               width={347}
               alt='dotted arrow'
-              className='absolute right-0 -top-48 pointer-events-none'
+              className='absolute sm:right-0 sm:-top-48 bottom-16 -right-24 pointer-events-none'
             />
           </div>
         </section>
         <section
-          className='flex relative flex-col items-center px-20 justify-center w-full'
+          className='flex relative flex-col items-center px-4 sm:px-20 justify-center w-full'
           style={{
             background:
               'linear-gradient(to bottom, transparent 60%, #E98476 60%);'
@@ -48,10 +48,10 @@ export default async function Home() {
           <StorePreview />
         </section>
       </div>
-      <section className='flex bg-accent relative flex-col items-center px-20 justify-center w-full py-[112px]'>
+      <section className='flex bg-accent relative flex-col items-center px-8 sm:px-20 justify-center w-full py-[112px]'>
         <HowItWorks />
       </section>
-      <section className='flex relative flex-col items-center px-20 justify-center pt-14 pb-0 bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
+      <section className='flex relative flex-col items-center px-8 sm:px-20 justify-center pt-14 pb-0 bg-gradient-to-r w-full from-[#F9F0E5] to-[#E9FEFD]'>
         <TextWithImage
           reversed
           image={
@@ -82,7 +82,7 @@ export default async function Home() {
           }}
         />
       </section>
-      <section className='flex relative flex-col items-center px-20 justify-center w-full py-[112px]'>
+      <section className='flex relative flex-col items-center px-4 sm:px-20 justify-center w-full py-[112px]'>
         <IdeaCenter products={products} />
       </section>
       <section className='w-full'>

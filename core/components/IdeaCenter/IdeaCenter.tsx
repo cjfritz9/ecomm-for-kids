@@ -2,6 +2,7 @@ import React from 'react';
 import Subtitle from '../UI/Subtitle';
 import ProductsPreview from '../ProductsPreview/ProductsPreview';
 import AnimatedArrows from './AnimatedArrows';
+import { TextGenerateEffect } from '../UI/TextGenerateEffect';
 
 interface Props {
   products: any;

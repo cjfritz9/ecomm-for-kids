@@ -10,11 +10,10 @@ interface Props {
 
 const ProductsPreview: React.FC<Props> = ({ products }) => {
   const [scope, animate] = useAnimate();
-  const inView = useInView(scope, {margin: "0px 0px -200px 0px"})
+  const inView = useInView(scope, { margin: '0px 0px -200px 0px' });
 
   useEffect(() => {
     if (inView) {
-
       animate(
         'span',
         {
@@ -35,7 +34,7 @@ const ProductsPreview: React.FC<Props> = ({ products }) => {
   }
 
   return (
-    <div ref={scope} className='flex flex-wrap gap-4 max-w-[1352px]'>
+    <div ref={scope} className='flex flex-wrap justify-center gap-4 max-w-[1352px]'>
       {products.map((product, i) => (
         <ProductCard key={product.id} data={product} index={i} />
       ))}
@@ -60,15 +59,17 @@ const ProductCard: React.FC<CardProps> = ({ data, index }) => {
   const { title, description, featuredImage } = data;
   const isSmall = index === 1 || index === 2;
   return (
-    <span className={`-translate-x-6 opacity-0 h-fit ${
-      isSmall ? 'w-[43%]' : 'w-[55%]'
-    }`}>
+    <span
+      className={`translate-x-6 -ml-12 sm:ml-0 opacity-0 h-fit ${
+        isSmall ? 'w-full max-w-[376px] sm:max-w-full xl:w-[43%]' : 'w-full max-w-[376px] sm:max-w-full xl:w-[55%]'
+      }`}
+    >
       <div
-        className={`h-[334px] group relative overflow-clip p-6 rounded-3xl bg-gradient-to-r from-base-200 from-50% to-transparent`}
+        className={`h-[540px] sm:h-[334px] group relative overflow-clip p-6 rounded-3xl bg-gradient-to-b sm:bg-gradient-to-r from-base-200 from-50% to-transparent`}
       >
         <div
           className={`bg-white rounded-3xl p-6 ${
-            isSmall ? 'w-[307px]' : 'w-[436px]'
+            isSmall ? 'w-full sm:w-[307px]' : 'w-full sm:w-[436px]'
           }`}
         >
           <p className='text-secondary font-bold text-2xl mb-2'>{title}</p>
@@ -78,7 +79,9 @@ const ProductCard: React.FC<CardProps> = ({ data, index }) => {
             width={344}
             height={344}
             alt={featuredImage.altText ?? ''}
-            className='-z-[1] absolute mix-blend-multiply right-0 top-0 group-hover:scale-110 transition-transform duration-300'
+            className={`-z-[1] absolute w-full sm:w-[344px] mix-blend-multiply right-0 sm:bottom-0 sm:top-0 group-hover:scale-110 transition-transform duration-300 ${
+              index === 1 ? '-bottom-24' : 'bottom-0'
+            } ${index === 3 ? '-bottom-48' : 'bottom-0'}`}
           />
         </div>
       </div>

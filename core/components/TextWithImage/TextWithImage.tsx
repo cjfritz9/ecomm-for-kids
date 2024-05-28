@@ -19,11 +19,11 @@ const TextWithImage: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`flex max-w-[1352px] pb-24 w-full justify-between items-center${
-        reversed ? ' flex-row-reverse' : ''
+      className={`flex flex-col sm:flex-row max-w-[1352px] pb-24 w-full justify-between items-center${
+        reversed ? ' flex-col-reverse sm:flex-row-reverse' : ''
       }`}
     >
-      <figure className='relative flex justify-center w-[554px] h-[554px] items-center'>
+      <figure className='relative flex justify-end w-full mt-6 sm:mt-0 h-auto items-center'>
         {imageBg}
         {image}
       </figure>

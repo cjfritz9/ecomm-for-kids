@@ -19,8 +19,8 @@ const CTA: React.FC = () => {
         product you’ve sold. You can keep track of what you’ve earned and learn
         how to earn even more!
       </p>
-      <Link href='/create-your-store' className='w-fit'>
-        <Button extraStyles={['w-fit', 'mt-6', 'fade-in']}>Get Started</Button>
+      <Link href='/create-your-store' className='sm:w-fit'>
+        <Button extraStyles={['w-fit', 'mt-6', 'fade-in', 'w-full', 'sm:w-fit']}>Get Started</Button>
       </Link>
     </div>
   );

@@ -4,7 +4,7 @@ import hero from '@/public/assets/hero-main.svg'
 
 const HeroImage: React.FC = () => {
   return (
-    <div className='flex justify-center'>
+    <div className='justify-center flex mt-12 sm:mt-0'>
       <Image
         src={hero.src}
         width={670}

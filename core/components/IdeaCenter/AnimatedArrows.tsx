@@ -17,7 +17,7 @@ const AnimatedArrows: React.FC = () => {
         height={212}
         width={365}
         alt='dotted arrow'
-        className={`absolute left-0 pointer-events-none${
+        className={`absolute -left-72 top-72 sm:top-16 sm:left-0 pointer-events-none${
           isInView ? ' arrow-draw-in-3' : ' hidden'
         }`}
       />
@@ -26,7 +26,7 @@ const AnimatedArrows: React.FC = () => {
         height={118}
         width={380}
         alt='dotted arrow'
-        className={`absolute right-0 pointer-events-none${
+        className={`absolute -right-72 top-12 sm:top-24 sm:right-0 pointer-events-none${
           isInView ? ' arrow-draw-in-4' : ' hidden'
         }`}
       />
