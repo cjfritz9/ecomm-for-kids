@@ -1,7 +1,5 @@
 const lightTheme = require('daisyui/src/theming/themes')['light'];
 
-console.log(lightTheme);
-
 const theme = {
   ...lightTheme,
   primary: '#1B9CA4',

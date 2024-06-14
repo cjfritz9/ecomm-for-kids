@@ -16,11 +16,20 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-      }
+      },
+      animation: {
+				fade: 'fade-in .25s',
+			},
+			keyframes: {
+				'fade-in': {
+					from: { opacity: '0' },
+					to: { opacity: '1' },
+				},
+			},
     }
   },
   darkMode: 'class',
-  plugins: [require('daisyui'), addVariablesForColors],
+  plugins: [require('@tailwindcss/typography'), require('daisyui'), addVariablesForColors],
   daisyui: {
     themes: [{ theme }]
   },

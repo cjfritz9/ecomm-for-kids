@@ -26,11 +26,9 @@ export const GET = async (_req: NextRequest, { params: { id } }: { params: { id:
     });
 
     if (res?.data?.node?.url) {
-      console.log('if (res?.data?.node?.url)');
       const reportRes = await fetch(res.data.node.url);
 
       if (reportRes) {
-        console.log('if (reportRes)');
         const result = await reportRes.text();
 
         const jsonResult = result
@@ -39,12 +37,10 @@ export const GET = async (_req: NextRequest, { params: { id } }: { params: { id:
           .map((line) => JSON.parse(line));
 
         if (result) {
-          console.log('if (result)');
           return new APIResponse('ok', 200, 'Success', { total: jsonResult.length} ).asNextResponse();
         }
       }
     }
-    console.log(res);
     return new APIResponse('error', 500, 'Internal server error', null).asNextResponse();
   } catch (error) {
     logger.error(`

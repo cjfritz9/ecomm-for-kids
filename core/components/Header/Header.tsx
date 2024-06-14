@@ -8,12 +8,14 @@ const Header: React.FC = () => {
   return (
     <section className='w-full py-5 px-8 sm:px-20 flex justify-center'>
       <div className='max-w-[1512px] flex w-full justify-between'>
-        <Image
-          src={BRAND.logo.src}
-          height={40}
-          width={134}
-          alt='KidCorp Logo'
-        />
+        <Link href='/' prefetch={false}>
+          <Image
+            src={BRAND.logo.src}
+            height={40}
+            width={134}
+            alt='KidCorp Logo'
+          />
+        </Link>
         <div className='flex sm:w-[336px] justify-between'>
           <Link
             href='https://kidcorp-admin-staging.cjfritz.dev/login'
