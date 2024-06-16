@@ -4,44 +4,41 @@ import palette3 from '@/public/assets/palettes/Palette 3.png';
 import palette4 from '@/public/assets/palettes/Palette 4.png';
 import palette5 from '@/public/assets/palettes/Palette 5.png';
 import palette6 from '@/public/assets/palettes/Palette 6.png';
-import Image from 'next/image';
-
-export interface QuestionnaireItem {
-  displayName: string | JSX.Element;
-  value: string | boolean;
-}
-
-export interface QuestionaireEntry {
-  dataKey: string;
-  items: QuestionnaireItem[];
-}
+import { QuestionaireEntry } from '@/@types/questionnaire';
+import ColorPalette from './ColorPalette';
 
 export const categorySelections: QuestionaireEntry = {
   dataKey: 'productCategory',
   items: [
     {
       displayName: 'Electronics',
-      value: 'electronics'
+      value: 'electronics',
+      name: 'electronics'
     },
     {
       displayName: 'Pet Products',
-      value: 'petProducts'
+      value: 'petProducts',
+      name: 'petProducts'
     },
     {
       displayName: 'Toys',
-      value: 'toys'
+      value: 'toys',
+      name: 'toys'
     },
     {
       displayName: 'Jewelry',
-      value: 'jewelry'
+      value: 'jewelry',
+      name: 'jewelry'
     },
     {
       displayName: "Women's Clothing",
-      value: 'womensClothing'
+      value: 'womensClothing',
+      name: 'womensClothing'
     },
     {
       displayName: "Men's Clothing",
-      value: 'mensClothing'
+      value: 'mensClothing',
+      name: 'mensClothing'
     }
   ]
 };
@@ -51,53 +48,64 @@ export const categoryDislikeSelections: QuestionaireEntry = {
   items: [
     {
       displayName: 'I like them all',
-      value: ''
+      value: '',
+      name: 'all'
     },
     {
       displayName: 'Electronics',
-      value: 'electronics'
+      value: 'electronics',
+      name: 'electronicsDislike'
     },
     {
       displayName: 'Pet Products',
-      value: 'petProducts'
+      value: 'petProducts',
+      name: 'petProductsDislike'
     },
     {
       displayName: 'Toys',
-      value: 'toys'
+      value: 'toys',
+      name: 'toysDislike'
     },
     {
       displayName: 'Jewelry',
-      value: 'jewelry'
+      value: 'jewelry',
+      name: 'jewelryDislike'
     },
     {
       displayName: "Women's Clothing",
-      value: 'womensClothing'
+      value: 'womensClothing',
+      name: 'womensClothingDislike'
     },
     {
       displayName: "Men's Clothing",
-      value: 'mensClothing'
+      value: 'mensClothing',
+      name: 'mensClothingDislike'
     }
   ]
 };
 
 export const seasonSelections: QuestionaireEntry = {
-  dataKey: 'season',
+  dataKey: 'favoriteSeason',
   items: [
     {
       displayName: 'Spring',
-      value: 'spring'
+      value: 'spring',
+      name: 'spring'
     },
     {
       displayName: 'Summer',
-      value: 'summer'
+      value: 'summer',
+      name: 'summer'
     },
     {
       displayName: 'Fall',
-      value: 'fall'
+      value: 'fall',
+      name: 'fall'
     },
     {
       displayName: 'Winter',
-      value: 'winter'
+      value: 'winter',
+      name: 'winter'
     }
   ]
 };
@@ -107,19 +115,23 @@ export const petSelections: QuestionaireEntry = {
   items: [
     {
       displayName: 'Cat(s)',
-      value: 'cats'
+      value: 'cats',
+      name: 'cats'
     },
     {
       displayName: 'Dog(s)',
-      value: 'dogs'
+      value: 'dogs',
+      name: 'dogs'
     },
     {
       displayName: 'Cats & Dogs',
-      value: 'catsAndDogs'
+      value: 'catsAndDogs',
+      name: 'catsAndDogs'
     },
     {
       displayName: 'Other',
-      value: 'other'
+      value: 'other',
+      name: 'other'
     }
   ]
 };
@@ -128,76 +140,34 @@ export const paletteSelections: QuestionaireEntry = {
   dataKey: 'colorPalette',
   items: [
     {
-      displayName: (
-        <Image
-          src={palette1}
-          height={100}
-          width={400}
-          alt='Palette option number 1'
-          className='rounded-lg border border-black my-0'
-        />
-      ),
-      value: 'palette1'
+      displayName: <ColorPalette src={palette1} number={1} />,
+      value: 'palette1',
+      name: 'palette1'
     },
     {
-      displayName: (
-        <Image
-          src={palette2}
-          height={100}
-          width={400}
-          alt='Palette option number 2'
-          className='rounded-lg border border-black my-0'
-        />
-      ),
-      value: 'palette2'
+      displayName: <ColorPalette src={palette2} number={2} />,
+      value: 'palette2',
+      name: 'palette2'
     },
     {
-      displayName: (
-        <Image
-          src={palette3}
-          height={100}
-          width={400}
-          alt='Palette option number 3'
-          className='rounded-lg border border-black my-0'
-        />
-      ),
-      value: 'palette3'
+      displayName: <ColorPalette src={palette3} number={3} />,
+      value: 'palette3',
+      name: 'palette3'
     },
     {
-      displayName: (
-        <Image
-          src={palette4}
-          height={100}
-          width={400}
-          alt='Palette option number 4'
-          className='rounded-lg border border-black my-0'
-        />
-      ),
-      value: 'palette4'
+      displayName: <ColorPalette src={palette4} number={4} />,
+      value: 'palette4',
+      name: 'palette4'
     },
     {
-      displayName: (
-        <Image
-          src={palette5}
-          height={100}
-          width={400}
-          alt='Palette option number 5'
-          className='rounded-lg border border-black my-0'
-        />
-      ),
-      value: 'palette5'
+      displayName: <ColorPalette src={palette5} number={5} />,
+      value: 'palette5',
+      name: 'palette5'
     },
     {
-      displayName: (
-        <Image
-          src={palette6}
-          height={100}
-          width={400}
-          alt='Palette option number 6'
-          className='rounded-lg border border-black my-0'
-        />
-      ),
-      value: 'palette6'
+      displayName: <ColorPalette src={palette6} number={6} />,
+      value: 'palette6',
+      name: 'palette6'
     }
   ]
 };
@@ -206,8 +176,8 @@ export const getYesNoAnswer = (dataKey: string): QuestionaireEntry => {
   return {
     dataKey,
     items: [
-      { displayName: 'Yes', value: true },
-      { displayName: 'No', value: false }
+      { displayName: 'Yes', value: true, name: `${dataKey}-true` },
+      { displayName: 'No', value: false, name: `${dataKey}-false` }
     ]
   };
 };

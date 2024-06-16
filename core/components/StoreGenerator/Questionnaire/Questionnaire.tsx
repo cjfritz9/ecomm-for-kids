@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  QuestionaireEntry,
   categoryDislikeSelections,
   categorySelections,
   getYesNoAnswer,
@@ -10,7 +9,11 @@ import {
   petSelections,
   seasonSelections
 } from './data.tsx';
-import { ImTerminal } from 'react-icons/im';
+import { QuestionaireEntry } from '@/@types/questionnaire.js';
+import {
+  getStoredToolAnswer,
+  updateStoredToolData
+} from '@/lib/utils/questionnaire.ts';
 
 const Questionnaire: React.FC = () => {
   return (
@@ -63,7 +66,7 @@ const Questionnaire: React.FC = () => {
             <RadioGroup data={seasonSelections} />
           </li>
           <li>
-            <p>Do you play games?</p>
+            <p>Do you play video games?</p>
             <RadioGroup data={getYesNoAnswer('playGames')} />
           </li>
           <li>
@@ -77,23 +80,11 @@ const Questionnaire: React.FC = () => {
         </ol>
       </div>
       <div>
-        <SectionHeading title='Other' />
+        <SectionHeading title='Colors' />
         <ol>
           <li>
             <p>Which of these color combinations do you like best?</p>
             <RadioGroup data={paletteSelections} />
-          </li>
-          <li>
-            <p>Do you play games?</p>
-            <RadioGroup data={getYesNoAnswer('playGames')} />
-          </li>
-          <li>
-            <p>Do you have pets?</p>
-            <RadioGroup data={petSelections} />
-          </li>
-          <li>
-            <p>Do you play sports?</p>
-            <RadioGroup data={getYesNoAnswer('playSports')} />
           </li>
         </ol>
       </div>
@@ -118,7 +109,36 @@ const Input: React.FC<InputProps> = ({
   dataKey,
   placeholder = 'Answer here'
 }) => {
-  return <input placeholder={placeholder} className='input mb-4 w-full' />;
+  const [answer, setAnswer] = useState('');
+
+  useEffect(() => {
+    if (answer === '') return;
+
+    const timeout = setTimeout(() => {
+      updateStoredToolData(dataKey, answer);
+    }, 200);
+
+    return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answer]);
+
+  useEffect(() => {
+    const storedAnswer = getStoredToolAnswer(dataKey);
+
+    if (storedAnswer && typeof storedAnswer === 'string') {
+      setAnswer(storedAnswer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <input
+      placeholder={placeholder}
+      className='input mb-4 w-full'
+      value={answer}
+      onChange={(e) => setAnswer(e.target.value)}
+    />
+  );
 };
 
 interface RadioGroupProps {
@@ -129,15 +149,32 @@ const RadioGroup: React.FC<RadioGroupProps> = ({ data }) => {
   const [selected, setSelected] = useState<string | boolean>('');
   const { dataKey, items } = data;
 
+  useEffect(() => {
+    const storedAnswer = getStoredToolAnswer(dataKey);
+
+    if (storedAnswer) {
+      setSelected(storedAnswer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (selected === '') return;
+
+    updateStoredToolData(dataKey, selected);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected]);
+
   const options = items.map((item) => {
     return (
       <label key={item.value.toString()} className='label cursor-pointer'>
         <input
           checked={selected === item.value}
           type='radio'
-          name={`radio-${item.value}`}
+          name={`radio-${item.name}-${item.value}`}
           className='radio mr-12 checked:bg-accent'
-          onClick={() => setSelected(item.value)}
+          onChange={() => setSelected(item.value)}
         />
         <span className='label-text'>{item.displayName}</span>
       </label>
