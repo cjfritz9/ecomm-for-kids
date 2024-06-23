@@ -39,3 +39,12 @@ export const updateStoredToolData = (key: string, value: string | boolean) => {
 export const resetStoredToolData = () => {
   localStorage.setItem(TOOL_KEY, JSON.stringify(QUESTIONNAIRE_DATA));
 };
+
+export const getIsValidData = (data: QuestionnaireData) => {
+  for (const [key, val] of Object.entries(data)) {
+    if (val === null) return false;
+    if (val === '' && key !== 'productCategoryDislike') return false;
+  }
+
+  return true;
+};

@@ -13,5 +13,8 @@ export const QUESTIONNAIRE_DATA = {
   pets: '',
   playGames: null as YesNoResponse,
   playSports: null as YesNoResponse,
-  colorPalette: ''
+  colorPalette: '',
+  name: '',
+  age: '',
+  about: '',
 };

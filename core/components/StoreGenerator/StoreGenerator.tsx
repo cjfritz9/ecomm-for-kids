@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Button from '../Button/Button';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Questionnaire from './Questionnaire/Questionnaire';
 import PageButtons from './PageButtons';
+import { calculateCollectionPoints } from '@/lib/utils/generator';
+import FinalQuestions from './Questionnaire/FinalQuestions';
 
 const StoreGenerator: React.FC = () => {
   const [step, setStep] = useState(0);
@@ -46,7 +47,7 @@ const StoreGenerator: React.FC = () => {
           <ol>
             <li>Answer a few easy questions</li>
             <li>Let our store generator create your store</li>
-            <li>Customize</li>
+            <li>Make Customizations</li>
             <li>Create your account</li>
             <li>Launch your store & start earning!</li>
           </ol>
@@ -68,6 +69,21 @@ const StoreGenerator: React.FC = () => {
         <Questionnaire />
         <PageButtons
           buttonData={{ back: { toStep: 0}, next: { toStep: 2 } }}
+          handleUpdate={handleUpdateStep}
+        />
+      </div>
+    );
+  }
+
+  if (step === 2) {
+    return (
+      <div className='p-12'>
+        <div className='prose text-3xl font-[500] mb-12'>
+          <h4 className='fade-in-ltr'>Answer a few easy questions</h4>
+        </div>
+        <FinalQuestions />
+        <PageButtons
+          buttonData={{ back: { toStep: 1}, next: { toStep: 3 } }}
           handleUpdate={handleUpdateStep}
         />
       </div>

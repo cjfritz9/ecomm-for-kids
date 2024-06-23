@@ -14,6 +14,8 @@ import {
   getStoredToolAnswer,
   updateStoredToolData
 } from '@/lib/utils/questionnaire.ts';
+import SectionHeading from './SectionHeading.tsx';
+import Input from './Input.tsx';
 
 const Questionnaire: React.FC = () => {
   return (
@@ -89,55 +91,6 @@ const Questionnaire: React.FC = () => {
         </ol>
       </div>
     </div>
-  );
-};
-
-interface SectionHeadingProps {
-  title: string;
-}
-
-const SectionHeading: React.FC<SectionHeadingProps> = ({ title }) => {
-  return <h4 className='text-2xl text-primary'>{title}</h4>;
-};
-
-interface InputProps {
-  dataKey: string;
-  placeholder?: string;
-}
-
-const Input: React.FC<InputProps> = ({
-  dataKey,
-  placeholder = 'Answer here'
-}) => {
-  const [answer, setAnswer] = useState('');
-
-  useEffect(() => {
-    if (answer === '') return;
-
-    const timeout = setTimeout(() => {
-      updateStoredToolData(dataKey, answer);
-    }, 200);
-
-    return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answer]);
-
-  useEffect(() => {
-    const storedAnswer = getStoredToolAnswer(dataKey);
-
-    if (storedAnswer && typeof storedAnswer === 'string') {
-      setAnswer(storedAnswer);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <input
-      placeholder={placeholder}
-      className='input mb-4 w-full'
-      value={answer}
-      onChange={(e) => setAnswer(e.target.value)}
-    />
   );
 };
 
